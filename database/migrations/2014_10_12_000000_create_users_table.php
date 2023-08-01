@@ -20,9 +20,6 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->rememberToken();
             $table->timestamps();
-
-
-            $table->foreignId('role_id')->constrained('roles')->on('roles')->cascadeOnDelete();
         });
     }
 
