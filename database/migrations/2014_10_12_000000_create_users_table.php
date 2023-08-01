@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamps();
 
 
-            $table->foreignId('role_id')->constrained('roles')->cascadeOnDelete();
+            $table->foreignId('role_id')->constrained('roles')->on('roles')->cascadeOnDelete();
         });
     }
 
