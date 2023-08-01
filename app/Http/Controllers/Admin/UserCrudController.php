@@ -33,8 +33,6 @@ class UserCrudController extends CrudController
         CRUD::setModel(\App\Models\User::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/user');
         CRUD::setEntityNameStrings('user', 'users');
-
-
     }
 
     /**
@@ -76,6 +74,26 @@ class UserCrudController extends CrudController
         CRUD::setValidation(UserRequest::class);
         CRUD::setFromDb(); // set fields from db columns.
 
+        CRUD::field([  // Select
+            'label'     => "Role",
+            'type'      => 'select',
+            'name'      => 'role_id', // the db column for the foreign key
+
+            // optional
+            // 'entity' should point to the method that defines the relationship in your Model
+            // defining entity will make Backpack guess 'model' and 'attribute'
+            'entity'    => 'role',
+
+            // optional - manually specify the related model and attribute
+            'model'     => "App\Models\Role", // related model
+            'attribute' => 'name', // foreign key attribute that is shown to user
+
+            // optional - force the related options to be a custom query, instead of all();
+            // 'options'   => (function ($query) {
+            //     return $query->orderBy('name', 'ASC')->get();
+            // }), //  you can use this to filter the results show in the select
+        ]);
+
         /**
          * Fields can be defined using the fluent syntax:
          * - CRUD::field('price')->type('number');
@@ -91,12 +109,5 @@ class UserCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
-    }
-
-
-    protected function getRolesArray()
-    {
-        $roles = Role::pluck('id', 'name')->all();
-        return $roles;
     }
 }
