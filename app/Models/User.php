@@ -50,4 +50,15 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+
+
+    public function generateAvatar()
+    {
+        $icon = new \Jdenticon\Identicon(array(
+            'size' => 50,
+            'value' => $this->name
+        ));
+
+        return $icon->getImageDataUri('svg');
+    }
 }
