@@ -21,7 +21,6 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-
             $table->foreignId('role_id')->constrained('roles')->cascadeOnDelete();
         });
     }

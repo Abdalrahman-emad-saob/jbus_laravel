@@ -22,7 +22,7 @@ return [
      * Possible values: horizontal, horizontal_dark, horizontal_overlap, vertical,
      * vertical_dark, vertical_transparent (legacy theme), right_vertical, right_vertical_dark, right_vertical_transparent
      */
-    'layout' => 'vertical',
+    'layout' => 'horizontal_dark',
 
     /**
      * Pick a login page layout.
@@ -55,7 +55,7 @@ return [
          * The available color modes.
          */
         'colorModes' => [
-            'system' => 'la-desktop',
+            // 'system' => 'la-desktop',
             'light' => 'la-sun',
             'dark' => 'la-moon',
         ],
@@ -76,12 +76,12 @@ return [
          * Fix the top-header component (present in "vertical_transparent") and the menu when the layout type is set as "horizontal".
          * This value is skipped when the layout type is horizontal-overlap, using false as default.
          */
-        'useStickyHeader' => false,
+        'useStickyHeader' => true,
 
         /**
          * When true, the content area will take the whole screen width.
          */
-        'useFluidContainers' => false,
+        'useFluidContainers' => true,
 
         /**
          * When true, the sidebar content for vertical layouts will not scroll with the rest of the content.

@@ -14,7 +14,8 @@ return [
     | By default the registration is open only on localhost.
     */
 
-    'registration_open' => env('BACKPACK_REGISTRATION_OPEN', env('APP_ENV') === 'local'),
+    // 'registration_open' => env('BACKPACK_REGISTRATION_OPEN', env('APP_ENV') === 'local'),
+    'registration_open' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -109,8 +110,8 @@ return [
     // Username column for authentication
     // The Backpack default is the same as the Laravel default (email)
     // If you need to switch to username, you also need to create that column in your db
-    'authentication_column' => 'name',
-    'authentication_column_name' => 'Admin Name',
+    'authentication_column' => 'email',
+    'authentication_column_name' => 'Email',
 
     // Backpack assumes that your "database email column" for operations like Login and Register is called "email".
     // If your database email column have a different name, you can configure it here. Eg: `user_mail`
@@ -129,7 +130,7 @@ return [
     // Other options:
     // - null (generic image with their first letter)
     // - example_method_name (specify the method on the User model that returns the URL)
-    'avatar_type' => 'gravatar',
+    'avatar_type' => 'generateAvatar',
 
     // Gravatar fallback options are 'identicon', 'monsterid', 'wavatar', 'retro', 'robohash', 'blank'
     // 'blank' will keep the generic image with the user first letter
