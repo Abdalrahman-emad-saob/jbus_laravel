@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\SocialiteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::prefix('v1')->group(function () {
+    Route::prefix('auth')->group(function () {
+        Route::prefix('{provider}')->group(function () {
+            Route::get('/', [SocialiteController::class, 'oAuthRedirect']);
+            Route::get('/callback', [SocialiteController::class, 'oAuthCallback']);
+        })->whereIn('provider', ['facebook', 'google']);
+    });
 });
 
 
