@@ -34,12 +34,12 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => '/api/v1/google/callback',
+        'redirect' => '/api/v1/auth/google/callback',
     ],
 
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => '/api/v1/facebook/callback',
+        'redirect' => '/api/v1/auth/facebook/callback',
     ]
 ];
