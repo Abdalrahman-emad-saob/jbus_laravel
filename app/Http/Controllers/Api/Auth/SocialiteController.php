@@ -29,7 +29,7 @@ class SocialiteController extends Controller
 
         $password = Str::random(10);
 
-        $user = User::updateOrCreate([
+        $user = User::firstOrCreate([
             'email' => $socialUser->email,
         ], [
             'name' => $socialUser->name,
@@ -39,10 +39,7 @@ class SocialiteController extends Controller
 
 
         if ($user->wasRecentlyCreated) {
-            Log::info("mailed");
             Mail::to($user->email)->send(new WelcomeEmail($user, $password));
-        } else {
-            Log::info("no mail");
         }
 
         $token = $user->createToken('authToken')->plainTextToken;
