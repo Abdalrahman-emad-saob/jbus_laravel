@@ -36,6 +36,10 @@ Route::prefix('v1')->group(function () {
 
 
     });
+
+    Route::post('/', function () {
+        return response()->json(['msg' => 'hello, ' . request('msg')]);
+    });
 });
 
 Route::get('/login1', function () {
