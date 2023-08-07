@@ -5,13 +5,7 @@ namespace App\Http\Controllers\Api\Auth;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Mail\WelcomeEmail;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
-use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Support\Str;
+
 
 class LoginController extends Controller
 {
@@ -41,8 +35,13 @@ class LoginController extends Controller
 
     public function logout()
     {
-        Auth::logout();
-        return redirect('/login');
+        Auth::user()->tokens()->delete();
+
+        return response()->json([
+            'message' => 'logged out successfully'
+        ]);
     }
+
+
 
 }

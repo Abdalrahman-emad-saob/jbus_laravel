@@ -24,11 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
-        Route::post('/login', [LoginController::class, 'login']);
-        Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        });
+        Route::post('login', [LoginController::class, 'login']);
+        Route::post('logout', [LoginController::class, 'logout'])->middleware('auth:sanctum')->name('logout');
+
         Route::prefix('{provider}')->group(function () {
             Route::get('/', [SocialiteController::class, 'oAuthRedirect']);
             Route::get('/callback', [SocialiteController::class, 'oAuthCallback']);
@@ -37,11 +35,4 @@ Route::prefix('v1')->group(function () {
 
     });
 
-    Route::post('/', function () {
-        return response()->json(['msg' => 'hello, ' . request('msg')]);
-    });
-});
-
-Route::get('/login1', function () {
-    return view('login', ['errors' => session('errors')]);
 });
