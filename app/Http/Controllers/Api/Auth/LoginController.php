@@ -16,15 +16,26 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard');
+            $user = Auth::user();
+            $token = $user->createToken('authToken')->plainTextToken;
+            return response()->json([
+                'success' => true,
+                'token' => $token,
+                'user' => $user,
+            ]);
         }
-        return back()->withErrors([
-            'Error' => 'Wrong Credentials.',
-        ]);
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Invalid credentials',
+        ], 401);
     }
+
+
     public function logout()
     {
         Auth::logout();
         return redirect('/login');
     }
+
 }
