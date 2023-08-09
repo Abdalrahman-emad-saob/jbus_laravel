@@ -26,9 +26,7 @@ Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::post('/login', [LoginController::class, 'login']);
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        });
+        
         Route::prefix('{provider}')->group(function () {
             Route::get('/', [SocialiteController::class, 'oAuthRedirect']);
             Route::get('/callback', [SocialiteController::class, 'oAuthCallback']);
