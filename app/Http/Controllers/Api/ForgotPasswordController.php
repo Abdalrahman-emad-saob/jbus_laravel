@@ -29,7 +29,7 @@ class ForgotPasswordController extends Controller
         $token = $this->broker()->createToken($user);
         $password = $request->password;
 
-        // Mail::to($user->email)->send(new ResetPasswordEmail($user, $password));
+        // Mail::to($user->email)->send(new ResetPasswordEmail($user, $token, $password));
 
         return response()->json([
             'message' => 'Password reset link sent successfully',
@@ -45,7 +45,13 @@ class ForgotPasswordController extends Controller
             'token' => 'required',
             'password' => 'required|confirmed',
         ]);
-
+        $user = User::where('email', $request->email)->first();
+        if (!$this->broker()->tokenExists($user, $request->token)) {
+            return response()->json(['message' => 'Invalid token'], 400);
+        }
+        if ($request->password !== $request->password_confirmation) {
+            return response()->json(['message' => 'Password confirmation does not match'], 400);
+        }
         $response = $this->broker()->reset(
             $request->only(
                 'email',
@@ -53,7 +59,7 @@ class ForgotPasswordController extends Controller
                 'password_confirmation',
                 'token'
             ),
-            function ($user, $password) use ($request) {
+            function ($user, $password) { //use ($request)
                 $user->forceFill([
                     'password' => bcrypt($password),
                 ])->save();
@@ -61,11 +67,13 @@ class ForgotPasswordController extends Controller
         );
 
         return $response == Password::PASSWORD_RESET
-            ? response()->json(['message' => 'Password reset successfully'])
+            ? response()->json([
+                'message' => 'Password reset successfully',
+                'password' => $request->password
+            ])
             : response()->json(['message' => 'Unable to reset password'], 400);
     }
-
-    protected function broker()
+    public function broker()
     {
         return Password::broker();
     }
