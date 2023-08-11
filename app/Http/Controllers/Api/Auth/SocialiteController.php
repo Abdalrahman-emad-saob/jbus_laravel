@@ -34,7 +34,7 @@ class SocialiteController extends Controller
         ], [
             'name' => $socialUser->name,
             'password' => Hash::make($password), // ??
-            'role_id' => 3,
+            'role' => User::$passenger,
         ]);
 
 
