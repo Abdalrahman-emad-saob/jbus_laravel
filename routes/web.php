@@ -21,3 +21,9 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('login');
 });
+
+
+use App\Http\Controllers\FirebaseController;
+
+Route::get('get-firebase-data', [FirebaseController::class, 'index'])->name('firebase.index');
+Route::get('update-firebase-data', [FirebaseController::class, 'nigg'])->name('firebase.index');
