@@ -66,6 +66,17 @@ class User extends Authenticatable
 
 
     // relationships
+    // admin
+
+
+    // driver
+    public function bus()
+    {
+        return $this->hasOne(Bus::class, 'driver_id', 'id');
+    }
+
+    // passenger
+
     public function passengerProfile()
     {
         return $this->hasOne(PassengerProfile::class, 'passenger_id', 'id');
@@ -86,13 +97,13 @@ class User extends Authenticatable
         return $this->hasMany(PaymentTransaction::class, 'passenger_id', 'id');
     }
 
-    public function bus()
-    {
-        return $this->hasOne(Bus::class, 'driver_id', 'id');
-    }
-
     public function trips()
     {
         return $this->hasMany(Trip::class, 'passenger_id', 'id');
     }
+
+
+
+
+
 }

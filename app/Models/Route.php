@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Route extends Model
 {
+    use CrudTrait;
     use HasFactory;
 
-    public function universities()
+    public function universityRoute()
     {
-        return $this->belongsToMany(University::class, 'university_routes', 'university_id', 'route_id');
+        return $this->hasOne(UniversityRoute::class, 'route_id', 'id');
     }
 
     public function favoritePoints()
