@@ -23,5 +23,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'role' => User::$superAdmin
         ]);
+        \App\Models\User::factory()->create([
+            'name' => 'abood1139',
+            'email' => 'aboodsaob1139@gmail.com',
+            'role_id' => 3
+        ]);
     }
 }
