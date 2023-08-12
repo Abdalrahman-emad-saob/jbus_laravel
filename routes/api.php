@@ -36,7 +36,3 @@ Route::prefix('v1')->group(function () {
     Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
     Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword']);
 });
-
-// Route::get('/login1', function () {
-//     return view('login', ['errors' => session('errors')]);
-// });
