@@ -10,6 +10,7 @@
         "backpack/theme-tabler": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
         "jdenticon/jdenticon": "^1.0",
+        "kreait/laravel-firebase": "^5.3",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.8",

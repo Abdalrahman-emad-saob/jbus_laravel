@@ -33,10 +33,14 @@ class SocialiteController extends Controller
             'email' => $socialUser->email,
         ], [
             'name' => $socialUser->name,
-            'password' => Hash::make($password), // ??
-            'role_id' => 3,
+            'password' => Hash::make($password), // ???
+            'role' => User::$passenger,
         ]);
 
+        if (!isset($user[$provider.'_token'])) {
+            $user[$provider.'_token'] = $socialUser->token;
+            $user->save();
+        }
 
         if ($user->wasRecentlyCreated) {
             Mail::to($user->email)->send(new WelcomeEmail($user, $password));

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 
 class CheckIfAdmin
@@ -27,7 +28,7 @@ class CheckIfAdmin
      */
     private function checkIfUserIsAdmin($user)
     {
-        return ($user->role_id == 1);
+        return $user->role === User::$admin || $user->role === User::$superAdmin;
     }
 
     /**
@@ -58,7 +59,7 @@ class CheckIfAdmin
             return $this->respondToUnauthorizedRequest($request);
         }
 
-        if (! $this->checkIfUserIsAdmin(backpack_user())) {
+        if (!$this->checkIfUserIsAdmin(backpack_user())) {
             return redirect(route('home'));
         }
 

@@ -18,10 +18,13 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone_number')->nullable();
+            $table->enum('role', ['SUPER_ADMIN', 'ADMIN', 'DRIVER', 'PASSENGER'])->default('PASSENGER');
+            $table->string('facebook_token')->nullable();
+            $table->string('google_token')->nullable();
+
+
             $table->rememberToken();
             $table->timestamps();
-
-            $table->foreignId('role_id')->constrained('roles')->cascadeOnDelete();
         });
     }
 
