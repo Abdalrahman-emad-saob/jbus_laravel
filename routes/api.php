@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Auth\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
+        Route::post('register',[RegisterController::class, 'register']);
         Route::post('login', [LoginController::class, 'login']);
         Route::post('logout', [LoginController::class, 'logout'])->middleware('auth:sanctum')->name('logout');
 
