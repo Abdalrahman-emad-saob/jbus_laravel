@@ -21,7 +21,7 @@ class ChargingTransactionFactory extends Factory
         return [
             'passenger_id' => User::where('role', User::$passenger)->inRandomOrder()->first()->id,
             'amount' => rand(0, 50),
-            'payment_method_id' => Stripe::all()->randm()->id
+            'payment_method_id' => Stripe::all()->randm()->id // STRIPE DO NOT FORGET
         ];
     }
 }
