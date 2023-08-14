@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             'role' => User::$passenger
         ]);
         \App\Models\PassengerProfile::factory()->create([
-            'passenger_id' => 11,
+            'passenger_id' => 12,
         ]);
 
     }
