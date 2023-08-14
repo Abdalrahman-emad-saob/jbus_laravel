@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('charging_transactions', function (Blueprint $table) {
             $table->id();
-            $table->payment_method();
+            $table->enum('payment_method', ['1','2']);
             $table->double('amount');
 
             $table->foreignId('passenger_id')->constrained('users')->cascadeOnDelete();
