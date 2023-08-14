@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Model\Stripe;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ChargingTransaction>
@@ -17,7 +19,9 @@ class ChargingTransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'passenger_id' => User::where('role', User::$passenger)->inRandomOrder()->first()->id,
+            'amount' => rand(0, 50),
+            'payment_method_id' => Stripe::all()->randm()->id
         ];
     }
 }

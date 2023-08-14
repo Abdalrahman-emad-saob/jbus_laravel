@@ -19,8 +19,8 @@ return new class extends Migration
 
             $table->foreignId('passenger_id')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('route_id')->nullable()->constrained('routes')->nullOnDelete();
-            $table->foreignId('pickup_point_id')->constrained('stops')->cascadeOnDelete();
-            $table->foreignId('dropoff_point_id')->constrained('stops')->cascadeOnDelete();
+            $table->foreignId('pickup_point_id')->constrained('points')->cascadeOnDelete();
+            $table->foreignId('dropoff_point_id')->constrained('points')->cascadeOnDelete();
             $table->foreignId('bus_id')->nullable()->constrained('buses')->nullOnDelete();
             $table->timestamps();
         });
