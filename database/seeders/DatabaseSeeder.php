@@ -42,6 +42,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\Bus::factory(10)->create();
         \App\Models\Trip::factory(10)->create();
         \App\Models\PaymentTransaction::factory(10)->create();
+        \App\Models\ChargingTransaction::factory(10)->create();
+
 
     }
 }
