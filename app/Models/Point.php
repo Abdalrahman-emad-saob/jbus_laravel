@@ -11,5 +11,26 @@ class Point extends Model
     use CrudTrait;
     use HasFactory;
 
+    public function favorite_point()
+    {
+        return $this->belongsTo(FavoritePoint::class, 'point_id', 'id');
+    }
+    public function trips_pickup()
+    {
+        return $this->belongsTo(Trip::class, 'pickup_point_id', 'id');
+    }
+    public function trips_dropoff()
+    {
+        return $this->belongsTo(Trip::class, 'dropoff_point_id', 'id');
+    }
+    public function routes_going()
+    {
+        return $this->belongsTo(Route::class, 'starting_point', 'id');
+    }
+    public function routs_returning()
+    {
+        return $this->belongsTo(Route::class, 'ending_point', 'id');
+    }
 
-}
+    }
+

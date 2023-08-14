@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('routes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('starting_point')->constrained('stops');
-            $table->foreignId('ending_point')->constrained('stops');
+            $table->foreignId('starting_point')->constrained('points');
+            $table->foreignId('ending_point')->constrained('points');
             $table->json('waypoints_going');
             $table->json('waypoints_returning');
             $table->timestamps();

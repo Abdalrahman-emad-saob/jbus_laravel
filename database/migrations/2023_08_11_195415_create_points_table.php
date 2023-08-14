@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stops', function (Blueprint $table) {
+        Schema::create('points', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->double('latitude');
