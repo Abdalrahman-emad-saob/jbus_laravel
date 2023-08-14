@@ -36,7 +36,7 @@ class LoginController extends Controller
                 // 'role' => DB::table('driver_profile')->where('id', $user->id)->get()
             ]);
         }
-
+        
         return response()->json([
             'success' => false,
             'message' => 'Invalid credentials',
