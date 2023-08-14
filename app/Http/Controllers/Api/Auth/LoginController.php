@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\Auth;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -18,11 +18,13 @@ class LoginController extends Controller
         ]);
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
+            if($user->id)
             $token = $user->createToken('authToken')->plainTextToken;
             return response()->json([
                 'success' => true,
                 'token' => $token,
                 'user' => $user,
+                'role' => DB::table('passenger_profiles')->where('id', $user->id)->get()
             ]);
         }
 
@@ -43,3 +45,4 @@ class LoginController extends Controller
     }
 }
 
+    

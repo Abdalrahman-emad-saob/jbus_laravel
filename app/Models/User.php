@@ -101,7 +101,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Trip::class, 'passenger_id', 'id');
     }
-
+    public function chargingTansaction(){
+        return $this->hasMany(ChargingTransaction::class, 'passenger_id', 'id');
+    }
 
 
 

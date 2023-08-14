@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use App\Models\PassengerProfile;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,6 +23,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
             'role' => User::$superAdmin
+        ]);
+        \App\Models\User::factory()->create([
+            'name' => 'abood1139',
+            'email' => 'aboodsaob1139@gmail.com',
+            'role' => User::$passenger
+        ]);
+        \App\Models\PassengerProfile::factory()->create([
+            'passenger_id' => 11,
         ]);
 
     }
