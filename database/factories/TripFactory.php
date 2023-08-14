@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Point;
 use App\Models\Route;
 use App\Models\Trip;
 use App\Models\User;
@@ -26,6 +27,8 @@ class TripFactory extends Factory
             'status' => Arr::random([Trip::$canceled, Trip::$completed]),
             'passenger_id' => User::where('role', User::$passenger)->inRandomOrder()->first()->id,
             'route_id' => Route::all()->random()->id,
+            'pickup_point_id' => Point::all()->random()->id,
+            'dropoff_point_id' => Point::all()->random()->id,
         ];
     }
 }

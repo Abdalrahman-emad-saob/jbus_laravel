@@ -17,7 +17,8 @@ class UniversityFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'logo' => 'storage/5.png'
         ];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Route;
+use App\Models\University;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,9 @@ class UniversityRouteFactory extends Factory
     public function definition(): array
     {
         return [
-            
+            'university_id' => University::all()->random()->id,
+            'route_id' => Route::all()->random()->id,
+
         ];
     }
 }
