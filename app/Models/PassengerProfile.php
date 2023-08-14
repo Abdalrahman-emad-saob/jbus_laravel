@@ -10,7 +10,7 @@ class PassengerProfile extends Model
 {
     use CrudTrait;
     use HasFactory;
-
+    
     public function passenger()
     {
         return $this->belongsTo(User::class, 'passenger_id', 'id');
