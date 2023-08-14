@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Point;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,8 +19,8 @@ class RouteFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'starting_point' => fake()->randomFloat(2),
-            'ending_point' => fake()->randomFloat(2),
+            'starting_point' => Point::all()->random()->id,
+            'ending_point' => Point::all()->random()->id,
             'waypoints_going' => json_encode([
                 [
                     "Geometry" => [
@@ -94,7 +95,7 @@ class RouteFactory extends Factory
                     ],
                 ],
             ]),
-            'returning' => json_encode([
+            'waypoints_returning' => json_encode([
                 [
                     "Geometry" => [
                         "Latitude" => 52.1615470947258,
@@ -168,7 +169,7 @@ class RouteFactory extends Factory
                     ],
                 ],
             ]),
-            
+
 
         ];
     }
