@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\Passenger\StripeController;
 use Illuminate\Support\Facades\Route;
 
 
