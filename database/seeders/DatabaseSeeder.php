@@ -6,7 +6,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use App\Models\PassengerProfile;
 
 class DatabaseSeeder extends Seeder
 {
