@@ -11,6 +11,14 @@ class Route extends Model
     use CrudTrait;
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'starting_point',
+        'ending_point',
+        'waypoints_going',
+        'waypoints_returning',
+    ];
+
     public function universityRoute()
     {
         return $this->hasOne(UniversityRoute::class, 'route_id', 'id');

@@ -11,6 +11,11 @@ class OTP extends Model
     use CrudTrait;
     use HasFactory;
 
+    protected $fillable = [
+        'number',
+        'passenger_id',
+        'email'
+    ];
 
     public function passenger()
     {

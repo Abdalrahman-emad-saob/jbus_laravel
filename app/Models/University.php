@@ -11,6 +11,11 @@ class University extends Model
     use CrudTrait;
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'logo',
+    ];
+
     public function universityRoute()
     {
         return $this->hasMany(UniversityRoute::class, 'university_id', 'id');
