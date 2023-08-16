@@ -11,6 +11,17 @@ class Trip extends Model
     use CrudTrait;
     use HasFactory;
 
+    protected $fillable = [
+        'rating',
+        'finished_at',
+        'status',
+        'passenger_id',
+        'route_id',
+        'pickup_point_id',
+        'dropoff_point_id',
+        'bus_id',
+    ];
+
     // enums
     static $canceled = 'CANCELED';
     static $completed = 'COMPLETED';

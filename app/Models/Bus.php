@@ -11,6 +11,13 @@ class Bus extends Model
     use CrudTrait;
     use HasFactory;
 
+    protected $fillable = [
+        'number',
+        'capacity',
+        'route_id',
+        'driver_id',
+    ];
+
     public function trips()
     {
         return $this->hasMany(Trip::class, 'bus_id', 'id');

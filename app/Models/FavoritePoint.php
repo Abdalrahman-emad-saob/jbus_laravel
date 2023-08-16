@@ -11,6 +11,12 @@ class FavoritePoint extends Model
     use CrudTrait;
     use HasFactory;
 
+    protected $fillable = [
+        'passenger_id',
+        'route_id',
+        'point_id',
+    ];
+
     public function passenger()
     {
         return $this->belongsTo(User::class, 'passenger_id', 'id');

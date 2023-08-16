@@ -10,7 +10,13 @@ class PassengerProfile extends Model
 {
     use CrudTrait;
     use HasFactory;
-    
+
+    protected $fillable = [
+        'passenger_id',
+        'picture',
+        'wallet',
+    ];
+
     public function passenger()
     {
         return $this->belongsTo(User::class, 'passenger_id', 'id');

@@ -9,6 +9,11 @@ class UniversityRoute extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'university_id',
+        'route_id',
+    ];
+
     public function university()
     {
         return $this->belongsTo(University::class, 'university_id', 'id');
