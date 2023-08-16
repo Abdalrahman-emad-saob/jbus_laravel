@@ -11,6 +11,12 @@ class Point extends Model
     use CrudTrait;
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'latitude',
+        'longitude',
+    ];
+
     public function favorite_point()
     {
         return $this->belongsTo(FavoritePoint::class, 'point_id', 'id');
@@ -31,6 +37,4 @@ class Point extends Model
     {
         return $this->belongsTo(Route::class, 'ending_point', 'id');
     }
-
-    }
-
+}

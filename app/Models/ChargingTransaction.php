@@ -11,8 +11,15 @@ class ChargingTransaction extends Model
 {
     use CrudTrait;
     use HasFactory;
-    public function passenger(){
+
+    protected $fillable = [
+        'payment_method',
+        'amount',
+        'passenger_id',
+    ];
+
+    public function passenger()
+    {
         return $this->belongsTo(User::class, 'passenger_id', 'id');
     }
-
 }
