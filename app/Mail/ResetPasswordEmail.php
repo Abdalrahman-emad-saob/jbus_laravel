@@ -2,24 +2,56 @@
 
 namespace App\Mail;
 
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class ResetPasswordEmail extends Mailable
 {
-    use SerializesModels;
+    use Queueable, SerializesModels;
 
-    public $user;
-    public $token;
-
-    public function __construct($user, $token)
+    /**
+     * Create a new message instance.
+     */
+    public function __construct(private $user, private $url)
     {
-        $this->user = $user;
-        $this->token = $token;
+        //
     }
 
-    public function build()
+    /**
+     * Get the message envelope.
+     */
+    public function envelope(): Envelope
     {
-        return $this->subject('Reset Your Password');
+        return new Envelope(
+            subject: 'Welcome To Jbus',
+        );
+    }
+
+    /**
+     * Get the message content definition.
+     */
+    public function content(): Content
+    {
+        return new Content(
+            view: 'mails.reset_password',
+            with:[
+                'user' => $this->user,
+                'url' => $this->url
+            ]
+        );
+    }
+
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     */
+    public function attachments(): array
+    {
+        return [];
     }
 }

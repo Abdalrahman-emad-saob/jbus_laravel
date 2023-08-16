@@ -24,7 +24,7 @@ class LoginController extends Controller
                 'success' => true,
                 'token' => $token,
                 'user' => $user,
-                'role' => DB::table('passenger_profiles')->where('id', $user->id)->get()
+                'role' => $user->passengerProfile
             ]);
         }
 
@@ -45,4 +45,3 @@ class LoginController extends Controller
     }
 }
 
-    

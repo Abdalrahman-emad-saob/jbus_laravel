@@ -14,7 +14,11 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.8",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.8",
+        "nyholm/psr7": "^1.8",
+        "railsware/mailtrap-php": "^1.7",
+        "symfony/http-client": "^6.3",
+        "symfony/mailer": "^6.3"
     },
     "require-dev": {
         "backpack/generators": "^4.0",
