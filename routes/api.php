@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\Passenger\PaymentController;
+use Laravel\Cashier\Http\Controllers\WebhookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +40,11 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();
     });
+
+    Route::prefix('payment')->group(function () {
+        Route::prefix('stripe')->group(function () {
+            Route::post('webhook', [WebhookController::class, 'handleWebhook']);
+            Route::post('create-payment-intent', [PaymentController::class, 'createPaymentIntent'])->middleware('auth:sanctum');
+        });
+    });
 });
-
-
-

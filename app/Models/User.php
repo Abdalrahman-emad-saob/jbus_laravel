@@ -7,12 +7,13 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Cashier\Billable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     use CrudTrait;
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Billable;
     // use MustVerifyEmail;
 
     /**
@@ -105,8 +106,5 @@ class User extends Authenticatable
     public function chargingTansaction(){
         return $this->hasMany(ChargingTransaction::class, 'passenger_id', 'id');
     }
-
-
-
 
 }
