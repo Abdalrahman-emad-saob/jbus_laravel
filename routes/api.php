@@ -27,7 +27,7 @@ Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::post('/login', [LoginController::class, 'login']);
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-        Route::post('register',[RegisterController::class, 'register']);
+        Route::post('register', [RegisterController::class, 'register']);
 
         Route::prefix('{provider}')->group(function () {
             Route::get('/', [SocialiteController::class, 'oAuthRedirect']);
@@ -46,5 +46,13 @@ Route::prefix('v1')->group(function () {
             Route::post('webhook', [WebhookController::class, 'handleWebhook']);
             Route::post('create-payment-intent', [PaymentController::class, 'createPaymentIntent'])->middleware('auth:sanctum');
         });
+
+        Route::get('pay-driver', [PaymentController::class, 'payForDriver'])
+            ->middleware('auth:sanctum')
+            ->name('payment.pay-driver');
+
+        Route::get('generate-qr-code', [PaymentController::class, 'generateQRCode'])
+            ->middleware(['auth:sanctum', 'checkIfDriver'])
+            ->name('payment.generate-qr-code');
     });
 });
