@@ -15,4 +15,5 @@ class University extends Model
     {
         return $this->hasMany(UniversityRoute::class, 'university_id', 'id');
     }
+    
 }

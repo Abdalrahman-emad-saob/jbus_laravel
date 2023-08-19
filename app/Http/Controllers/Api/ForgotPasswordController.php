@@ -82,25 +82,10 @@ class ForgotPasswordController extends Controller
 
 
 
-    public function returnUniversities(Request $request)
-    {
-        return University::where('name', 'like', '%' . $request->name . '%')->get();
-    }
-    public function returnUniversitiesRoutes(Request $request)
-    {
-        $universityName = $request->name;
+    // public function returnUniversities(Request $request)
+    // {
+    //     return University::where('name', 'like', '%' . $request->name . '%')->get();
+    // }
 
-        $routes = University::where('name', 'like', '%' . $universityName . '%')
-            ->with('UniversityRoute.route')
-            ->limit(5)
-            ->get();
-        return response()->json($routes);
-    }
-    public function returnUniversityRoutes(Request $request)
-    {
-        $routes = University::where('id', $request->id)
-            ->with('UniversityRoute.route')
-            ->get();
-        return response()->json($routes);
-    }
+
 }
