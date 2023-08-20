@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use App\Mail\ResetPasswordEmail;
-use App\Mail\WelcomeEmail;
-use App\Models\FavoritePoint;
-use App\Models\Point;
 
 class ForgotPasswordController extends Controller
 {
@@ -78,21 +75,7 @@ class ForgotPasswordController extends Controller
         return Password::broker();
     }
 
-    public function addToFavorite(Request $request){
-        $point = new Point();
-        $point->name = $request->name;
-        $point->latitude = $request->latitude;
-        $point->longitude = $request->longitude;
-        $point->save();
 
-        $favoritePoint = new FavoritePoint();
-        $favoritePoint->passenger_id = $request->user->id;
-        $favoritePoint->point_id = $point->id;
-        $favoritePoint->route_id = $request->route_id;
-        $favoritePoint->save();
-
-        return true;
-    }
 
 
 }

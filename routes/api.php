@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Passenger\PaymentController;
+use App\Http\Controllers\Api\Passenger\PointController;
 use Laravel\Cashier\Http\Controllers\WebhookController;
 
 /*
@@ -36,7 +37,7 @@ Route::prefix('v1')->group(function () {
     });
     Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
     Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword']);
-    Route::post('/addToFavorite', [ForgotPasswordController::class, 'addToFavorite']);
+    Route::post('/addToFavorite', [PointController::class, 'addToFavorite']);
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();
     });
