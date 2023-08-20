@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use App\Mail\ResetPasswordEmail;
+use App\Models\University;
+use App\Models\UniversityRoute;
+use Illuminate\Support\Arr;
 
 class ForgotPasswordController extends Controller
 {
@@ -74,7 +77,6 @@ class ForgotPasswordController extends Controller
     {
         return Password::broker();
     }
-
 
 
 

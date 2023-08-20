@@ -7,9 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\Auth\RegisterController;
-use App\Http\Controllers\Api\Passenger\PaymentController;
-use App\Http\Controllers\Api\Passenger\PointController;
 use Laravel\Cashier\Http\Controllers\WebhookController;
+use App\Http\Controllers\Api\Passenger\PointController;
+use App\Http\Controllers\Api\Passenger\PaymentController;
+use App\Http\Controllers\Api\UniversityRoutesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,8 @@ Route::prefix('v1')->group(function () {
     Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
     Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword']);
     Route::post('/addToFavorite', [PointController::class, 'addToFavorite']);
+    Route::post('/searchUniversitiesRoutes', [UniversityRoutesController::class, 'searchUniversitiesRoutes']);
+    Route::post('/returnUniversitiesRoutes', [UniversityRoutesController::class, 'returnUniversitiesRoutes']);
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();
     });
