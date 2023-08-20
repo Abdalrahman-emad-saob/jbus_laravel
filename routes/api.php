@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use Laravel\Cashier\Http\Controllers\WebhookController;
-use App\Http\Controllers\Api\Passenger\PointController;
-use App\Http\Controllers\Api\Passenger\PaymentController;
+use App\Http\Controllers\Api\PointController;
+use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\UniversityRoutesController;
 
 /*
@@ -36,15 +36,25 @@ Route::prefix('v1')->group(function () {
             Route::get('/callback', [SocialiteController::class, 'oAuthCallback']);
         })->whereIn('provider', ['facebook', 'google']);
     });
+    //      Reset Passowrd
     Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
     Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword']);
+
+    //      Favorite
     Route::post('/addToFavorite', [PointController::class, 'addToFavorite']);
+    Route::post('/returnFavorites', [PointController::class, 'returnFavorites']);
+    Route::post('/returnTripsandFavorites', [PointController::class, 'returnTripsandFavorites']);
+    Route::post('/returnTripsandFavorites', [PointController::class, 'returnTripsandFavorites']);
+    Route::post('/deleteFavorite', [PointController::class, 'deleteFavorite']);
+
+    //      University Routes
     Route::post('/searchUniversitiesRoutes', [UniversityRoutesController::class, 'searchUniversitiesRoutes']);
     Route::post('/returnUniversitiesRoutes', [UniversityRoutesController::class, 'returnUniversitiesRoutes']);
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();
     });
 
+    //      Payments
     Route::prefix('payment')->group(function () {
         Route::prefix('stripe')->group(function () {
             Route::post('webhook', [WebhookController::class, 'handleWebhook']);
