@@ -8,7 +8,6 @@
 <x-backpack::menu-item title="Passenger profiles" icon="la la-question" :link="backpack_url('passenger-profile')" />
 <x-backpack::menu-item title="Payment transactions" icon="la la-question" :link="backpack_url('payment-transaction')" />
 <x-backpack::menu-item title="Routes" icon="la la-question" :link="backpack_url('route')" />
-<x-backpack::menu-item title="Stops" icon="la la-question" :link="backpack_url('stop')" />
 <x-backpack::menu-item title="Trips" icon="la la-question" :link="backpack_url('trip')" />
 <x-backpack::menu-item title="Universities" icon="la la-question" :link="backpack_url('university')" />
 <x-backpack::menu-item title="Users" icon="la la-question" :link="backpack_url('user')" />

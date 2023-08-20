@@ -39,11 +39,11 @@ class Trip extends Model
     }
     public function pickupPoint()
     {
-        return $this->belongsTo(Stop::class, 'pickup_point_id', 'id');
+        return $this->belongsTo(Point::class, 'pickup_point_id', 'id');
     }
     public function dropoffPoint()
     {
-        return $this->belongsTo(Stop::class, 'dropoff_point_id', 'id');
+        return $this->belongsTo(Point::class, 'dropoff_point_id', 'id');
     }
     public function bus()
     {

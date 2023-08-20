@@ -23,7 +23,6 @@ Route::group([
     Route::crud('passenger-profile', 'PassengerProfileCrudController');
     Route::crud('payment-transaction', 'PaymentTransactionCrudController');
     Route::crud('route', 'RouteCrudController');
-    Route::crud('stop', 'StopCrudController');
     Route::crud('trip', 'TripCrudController');
     Route::crud('university', 'UniversityCrudController');
     Route::crud('user', 'UserCrudController');

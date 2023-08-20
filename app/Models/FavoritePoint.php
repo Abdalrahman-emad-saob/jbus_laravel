@@ -29,6 +29,6 @@ class FavoritePoint extends Model
 
     public function point()
     {
-        return $this->belongsTo(Stop::class, 'point_id', 'id');
+        return $this->belongsTo(Point::class, 'point_id', 'id');
     }
 }
