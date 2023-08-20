@@ -28,6 +28,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'aboodsaob1139@gmail.com',
             'role' => User::$passenger
         ]);
+        \App\Models\PassengerProfile::factory()->create([
+            'passenger_id' => 12,
+        ]);
         // \App\Models\PassengerProfile::factory()->create([
         //     'passenger_id' => 11,
         // ]);
