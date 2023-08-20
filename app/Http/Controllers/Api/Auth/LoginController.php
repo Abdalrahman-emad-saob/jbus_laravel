@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
-
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -19,24 +18,24 @@ class LoginController extends Controller
         ]);
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            if($user->id)
-            $token = $user->createToken('authToken')->plainTextToken;
-            if($user->role == User::$passenger)
-            return response()->json([
-                'success' => true,
-                'token' => $token,
-                'user' => $user,
-                'role' => $user->passengerProfile
-            ]);
-            else if($user->role == User::$driver)
-            return response()->json([
-                'success' => true,
-                'token' => $token,
-                'user' => $user,
-                // 'role' => DB::table('driver_profile')->where('id', $user->id)->get()
-            ]);
+            if ($user->id)
+                $token = $user->createToken('authToken')->plainTextToken;
+            if ($user->role == User::$passenger)
+                return response()->json([
+                    'success' => true,
+                    'token' => $token,
+                    'user' => $user,
+                    'role' => $user->passengerProfile
+                ]);
+            else if ($user->role == User::$driver)
+                return response()->json([
+                    'success' => true,
+                    'token' => $token,
+                    'user' => $user,
+                    // 'role' => $user->driverProfile
+                ]);
         }
-        
+
         return response()->json([
             'success' => false,
             'message' => 'Invalid credentials',
@@ -53,4 +52,3 @@ class LoginController extends Controller
         ]);
     }
 }
-
