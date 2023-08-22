@@ -47,7 +47,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/addToFavorite', [PointController::class, 'addToFavorite']);
     Route::post('/returnFavorites', [PointController::class, 'returnFavorites']);
     Route::post('/returnTripsandFavorites', [PointController::class, 'returnTripsandFavorites']);
-    Route::post('/returnTripsandFavorites', [PointController::class, 'returnTripsandFavorites']);
+    // Route::post('/returnTripsandFavorites', [PointController::class, 'returnTripsandFavorites']);
     Route::post('/deleteFavorite', [PointController::class, 'deleteFavorite']);
 
     //      University Routes
@@ -56,7 +56,7 @@ Route::prefix('v1')->group(function () {
 
     // Tracking Bus
     Route::prefix('buses')->group(function () {
-        Route::put('location', [BusController::class, 'updateLocation']);
+        Route::post('location', [BusController::class, 'updateLocation']);
     });
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();
