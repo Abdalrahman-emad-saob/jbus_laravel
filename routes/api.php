@@ -11,6 +11,7 @@ use Laravel\Cashier\Http\Controllers\WebhookController;
 use App\Http\Controllers\Api\PointController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\UniversityRoutesController;
+use App\Http\Controllers\Api\BusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,10 +28,12 @@ use App\Http\Controllers\Api\UniversityRoutesController;
 
 Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
+        //      login
         Route::post('/login', [LoginController::class, 'login']);
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+        //      register
         Route::post('register', [RegisterController::class, 'register']);
-
+        //      login and register using oAuth
         Route::prefix('{provider}')->group(function () {
             Route::get('/', [SocialiteController::class, 'oAuthRedirect']);
             Route::get('/callback', [SocialiteController::class, 'oAuthCallback']);
@@ -48,8 +51,13 @@ Route::prefix('v1')->group(function () {
     Route::post('/deleteFavorite', [PointController::class, 'deleteFavorite']);
 
     //      University Routes
-    Route::post('/searchUniversitiesRoutes', [UniversityRoutesController::class, 'searchUniversitiesRoutes']);
+    // Route::post('/searchUniversitiesRoutes', [UniversityRoutesController::class, 'searchUniversitiesRoutes']);
     Route::post('/returnUniversitiesRoutes', [UniversityRoutesController::class, 'returnUniversitiesRoutes']);
+
+    // Tracking Bus
+    Route::prefix('buses')->group(function () {
+        Route::put('location', [BusController::class, 'updateLocation']);
+    });
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();
     });

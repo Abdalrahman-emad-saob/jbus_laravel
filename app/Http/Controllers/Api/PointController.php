@@ -18,7 +18,6 @@ class PointController extends Controller
             'latitude' => 'required',
             'longitude' => 'required',
             'passenger_id' => 'required',
-            'point_id' => 'required',
             'route_id' => 'required',
         ]);
         $point = Point::create([

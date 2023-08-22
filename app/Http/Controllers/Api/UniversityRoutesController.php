@@ -25,24 +25,25 @@ class UniversityRoutesController extends Controller
         //     ->limit(5)
         //     ->get();
         // return response()->json($routes);
-        $id = $request->id;
+        $id = $request->passenger_id;
         $universities = University::with(['universityRoute' => function ($query) use ($id) {
             $query->with(['route.favoritePoints' => function ($query) use ($id) {
-                $query->where('id', $id);
-        }]);
-    }])->get();
+                $query->where('passenger_id', $id);
+            }]);
+        }])->get();
 
         return $universities;
     }
-    public function searchUniversitiesRoutes(Request $request)
-    {
-        $id = $request->id;
-        $universities = University::where('name', 'like', '%' . $request->name . '%')->with(['universityRoute' => function ($query) use ($id) {
-            $query->with(['route.favoritePoints' => function ($query) use ($id) {
-                $query->where('id', $id);
-        }]);
-    }])->get();
+    // public function searchUniversitiesRoutes(Request $request)
+    // {
+    //     $id = $request->passenger_id;
+    //     $universities = University::where('name', 'like', '%' . $request->name . '%')->with(['universityRoute' => function ($query) use ($id) {
+    //         $query->with(['route.favoritePoints' => function ($query) use ($id) {
+    //             $query->where('passenger_id', $id);
+    //         }]);
+    //     }])->get();
 
-        return $universities;
-    }
+    //     return $universities;
+    // }
+
 }
