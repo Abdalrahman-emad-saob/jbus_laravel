@@ -30,6 +30,8 @@ Route::prefix('v1')->group(function () {
         Route::post('/login', [LoginController::class, 'login']);
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
         Route::post('register', [RegisterController::class, 'register']);
+        Route::post('verifyOTP', [RegisterController::class, 'verifyOTP']);
+        Route::post('createUser', [RegisterController::class, 'createUser']);
 
         Route::prefix('{provider}')->group(function () {
             Route::get('/', [SocialiteController::class, 'oAuthRedirect']);
