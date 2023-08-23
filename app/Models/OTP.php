@@ -13,12 +13,12 @@ class OTP extends Model
 
     protected $fillable = [
         'number',
-        'passenger_id',
+        // 'passenger_id',
         'email'
     ];
 
-    public function passenger()
-    {
-        return $this->belongsTo(User::class, 'passenger_id', 'id');
-    }
+    // public function passenger()
+    // {
+    //     return $this->belongsTo(User::class, 'passenger_id', 'id');
+    // }
 }

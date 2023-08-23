@@ -19,7 +19,7 @@ class OTPFactory extends Factory
     {
         return [
             'number' => str_pad(rand(0, pow(10, 4)-1),4, '0', STR_PAD_LEFT),
-            'passenger_id' => User::where('role', User::$passenger)->inRandomOrder()->first()->id,
+            // 'passenger_id' => User::where('role', User::$passenger)->inRandomOrder()->first()->id,
             'email' => User::where('role', User::$passenger)->inRandomOrder()->first()->email
         ];
     }
