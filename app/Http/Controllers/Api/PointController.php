@@ -28,7 +28,7 @@ class PointController extends Controller
         ]);
         FavoritePoint::create([
             'passenger_id' => $request->passenger_id,
-            'point_id' => $point->point_id,
+            'point_id' => $point->id,
             'route_id' => $request->route_id
         ]);
 
