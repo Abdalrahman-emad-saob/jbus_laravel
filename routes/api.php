@@ -11,6 +11,7 @@ use Laravel\Cashier\Http\Controllers\WebhookController;
 use App\Http\Controllers\Api\PointController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\UniversityRoutesController;
+use App\Http\Controllers\Api\UpdateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,11 @@ Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::post('/login', [LoginController::class, 'login']);
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-        Route::post('register', [RegisterController::class, 'register']);
-        Route::post('verifyOTP', [RegisterController::class, 'verifyOTP']);
-        Route::post('createUser', [RegisterController::class, 'createUser']);
+        Route::post('register/createOTP', [RegisterController::class, 'createOTP']);
+        Route::post('register/createUser', [RegisterController::class, 'createUser']);
+        Route::post('update/createOTP', [UpdateController::class, 'createOTP']);
+        Route::post('update/email', [UpdateController::class, 'updateEmail']);
+        Route::post('update/phoneNumber', [UpdateController::class, 'updatePhoneNumber']);
 
         Route::prefix('{provider}')->group(function () {
             Route::get('/', [SocialiteController::class, 'oAuthRedirect']);
