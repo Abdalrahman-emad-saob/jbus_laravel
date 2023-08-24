@@ -35,6 +35,7 @@ Route::prefix('v1')->group(function () {
         Route::post('update/createOTP', [UpdateController::class, 'createOTP']);
         Route::post('update/email', [UpdateController::class, 'updateEmail']);
         Route::post('update/phoneNumber', [UpdateController::class, 'updatePhoneNumber']);
+        Route::post('update/updatePFP', [UpdateController::class, 'updatePFP']);
 
         Route::prefix('{provider}')->group(function () {
             Route::get('/', [SocialiteController::class, 'oAuthRedirect']);
