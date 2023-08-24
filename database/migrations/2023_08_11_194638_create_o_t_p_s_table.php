@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('o_t_p_s', function (Blueprint $table) {
             $table->id();
             $table->string('number');
-            $table->foreignId('passenger_id')->constrained('users')->cascadeOnDelete();
+            // $table->foreignId('passenger_id')->constrained('users')->cascadeOnDelete();
             $table->string('email');
             $table->timestamps();
         });

@@ -84,10 +84,10 @@ class User extends Authenticatable
         return $this->hasOne(PassengerProfile::class, 'passenger_id', 'id');
     }
 
-    public function otp()
-    {
-        return $this->hasOne(OTP::class, 'passenger_id', 'id');
-    }
+    // public function otp()
+    // {
+    //     return $this->hasOne(OTP::class, 'passenger_id', 'id');
+    // }
 
     public function favoritePoints()
     {

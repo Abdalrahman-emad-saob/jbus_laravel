@@ -33,7 +33,9 @@ Route::prefix('v1')->group(function () {
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
         //      register
         Route::post('register', [RegisterController::class, 'register']);
-        //      login and register using oAuth
+        Route::post('verifyOTP', [RegisterController::class, 'verifyOTP']);
+        Route::post('createUser', [RegisterController::class, 'createUser']);
+
         Route::prefix('{provider}')->group(function () {
             Route::get('/', [SocialiteController::class, 'oAuthRedirect']);
             Route::get('/callback', [SocialiteController::class, 'oAuthCallback']);
