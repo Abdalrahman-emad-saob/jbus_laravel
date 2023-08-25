@@ -8,14 +8,6 @@ use Illuminate\Http\Request;
 
 class UniversityRoutesController extends Controller
 {
-    // public function returnUniversityRoutes(Request $request)
-    // {
-    //     $routes = University::where('id', $request->id)
-    //         ->with('UniversityRoute.route')
-    //         ->get();
-    //     return response()->json($routes);
-    // }
-
     public function returnUniversitiesRoutes(Request $request)
     {
         // $universityName = $request->name;
@@ -34,16 +26,9 @@ class UniversityRoutesController extends Controller
 
         return $universities;
     }
-    // public function searchUniversitiesRoutes(Request $request)
-    // {
-    //     $id = $request->passenger_id;
-    //     $universities = University::where('name', 'like', '%' . $request->name . '%')->with(['universityRoute' => function ($query) use ($id) {
-    //         $query->with(['route.favoritePoints' => function ($query) use ($id) {
-    //             $query->where('passenger_id', $id);
-    //         }]);
-    //     }])->get();
 
-    //     return $universities;
-    // }
-
+    public function returnFavoriteUniversities(Request $request)
+    {
+        return University::whereHas('universityRoute.route.favoritePoints')->get();
+    }
 }

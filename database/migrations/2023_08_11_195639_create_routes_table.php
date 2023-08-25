@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('ending_point')->constrained('points');
             $table->json('waypoints_going');
             $table->json('waypoints_returning');
+            $table->double('fee', 2);
             $table->timestamps();
         });
     }

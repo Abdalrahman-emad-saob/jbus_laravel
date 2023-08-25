@@ -26,13 +26,14 @@ class LoginController extends Controller
                     'user' => $user,
                     'role' => $user->passengerProfile
                 ]);
-            else if ($user->role == User::$driver)
+            else if ($user->role == User::$driver) {
                 return response()->json([
                     'success' => true,
                     'token' => $token,
                     'user' => $user,
                     // 'role' => $user->driverProfile
                 ]);
+            }
         }
 
         return response()->json([

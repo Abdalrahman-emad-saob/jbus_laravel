@@ -67,4 +67,9 @@ class PointController extends Controller
         ]);
         return Point::find($request->point_id)->delete();
     }
+
+    public function returnPoint(Request $request)
+    {
+        return Point::where('id', $request->id)->get();
+    }
 }

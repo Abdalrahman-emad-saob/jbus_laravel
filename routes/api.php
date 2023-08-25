@@ -49,17 +49,18 @@ Route::prefix('v1')->group(function () {
     Route::post('/addToFavorite', [PointController::class, 'addToFavorite']);
     Route::post('/returnFavorites', [PointController::class, 'returnFavorites']);
     Route::post('/returnTripsandFavorites', [PointController::class, 'returnTripsandFavorites']);
-    // Route::post('/returnTripsandFavorites', [PointController::class, 'returnTripsandFavorites']);
     Route::post('/deleteFavorite', [PointController::class, 'deleteFavorite']);
+    //      Return Point
+    Route::post('returnPoint', [PointController::class, 'returnPoint']);
 
     //      University Routes
-    // Route::post('/searchUniversitiesRoutes', [UniversityRoutesController::class, 'searchUniversitiesRoutes']);
     Route::post('/returnUniversitiesRoutes', [UniversityRoutesController::class, 'returnUniversitiesRoutes']);
+    Route::post('returnFavoriteUniversities', [UniversityRoutesController::class, 'returnFavoriteUniversities']);
 
     // Tracking Bus
-    Route::prefix('buses')->group(function () {
-        Route::post('location', [BusController::class, 'updateLocation']);
-    });
+    // Route::prefix('buses')->group(function () {
+    //     Route::post('location', [BusController::class, 'updateLocation']);
+    // });
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();
     });

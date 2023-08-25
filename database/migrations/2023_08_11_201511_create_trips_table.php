@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('rating')->nullable();
             $table->timestamp('finished_at')->nullable();
-            $table->enum('status', ['CANCELED', 'COMPLETED', 'ONGOING'])->default('ONGOING');
+            $table->enum('status', ['CANCELED', 'COMPLETED', 'ONGOING', 'PENDING'])->default('PENDING');
 
             $table->foreignId('passenger_id')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('route_id')->nullable()->constrained('routes')->nullOnDelete();
