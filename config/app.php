@@ -168,6 +168,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Kreait\Laravel\Firebase\ServiceProvider::class,
         // Vyuldashev\LaravelOpenApi\OpenApiServiceProvider::class,
     ])->toArray(),
 
@@ -185,5 +186,15 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
+
+    'firebase' => [
+        'apiKey' => env('FIREBASE_API_KEY'),
+        'authDomain' => env('FIREBASE_AUTH_DOMAIN'),
+        'projectId' => env('FIREBASE_PROJECT_ID'),
+        'storageBucket' => env('FIREBASE_STORAGE_BUCKET'),
+        'messagingSenderId' => env('FIREBASE_MESSAGING_SENDER_ID'),
+        'appId' => env('FIREBASE_APP_ID'),
+        'measurementId' => env('FIREBASE_MEASUREMENT_ID'),
+      ],
 
 ];

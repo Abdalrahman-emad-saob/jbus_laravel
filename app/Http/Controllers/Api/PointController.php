@@ -18,7 +18,6 @@ class PointController extends Controller
             'latitude' => 'required',
             'longitude' => 'required',
             'passenger_id' => 'required',
-            'point_id' => 'required',
             'route_id' => 'required',
         ]);
         $point = Point::create([
@@ -67,5 +66,10 @@ class PointController extends Controller
             'point_id' => 'required',
         ]);
         return Point::find($request->point_id)->delete();
+    }
+
+    public function returnPoint(Request $request)
+    {
+        return Point::where('id', $request->id)->get();
     }
 }

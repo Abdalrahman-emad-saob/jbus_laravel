@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -27,13 +26,14 @@ class LoginController extends Controller
                     'user' => $user,
                     'role' => $user->passengerProfile
                 ]);
-            else if ($user->role == User::$driver)
+            else if ($user->role == User::$driver) {
                 return response()->json([
                     'success' => true,
                     'token' => $token,
                     'user' => $user,
                     // 'role' => $user->driverProfile
                 ]);
+            }
         }
 
         return response()->json([

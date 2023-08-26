@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Point;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Random;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Route>
@@ -145,6 +147,7 @@ class RouteFactory extends Factory
                     ],
                 ],
             ]),
+            'fee' => 115,
         ];
     }
 }

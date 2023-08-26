@@ -11,6 +11,7 @@ use Laravel\Cashier\Http\Controllers\WebhookController;
 use App\Http\Controllers\Api\PointController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\UniversityRoutesController;
+use App\Http\Controllers\Api\BusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,10 @@ use App\Http\Controllers\Api\UniversityRoutesController;
 
 Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
+        //      login
         Route::post('/login', [LoginController::class, 'login']);
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+        //      register
         Route::post('register', [RegisterController::class, 'register']);
         Route::post('verifyOTP', [RegisterController::class, 'verifyOTP']);
         Route::post('createUser', [RegisterController::class, 'createUser']);
@@ -46,12 +49,18 @@ Route::prefix('v1')->group(function () {
     Route::post('/addToFavorite', [PointController::class, 'addToFavorite']);
     Route::post('/returnFavorites', [PointController::class, 'returnFavorites']);
     Route::post('/returnTripsandFavorites', [PointController::class, 'returnTripsandFavorites']);
-    Route::post('/returnTripsandFavorites', [PointController::class, 'returnTripsandFavorites']);
     Route::post('/deleteFavorite', [PointController::class, 'deleteFavorite']);
+    //      Return Point
+    Route::post('returnPoint', [PointController::class, 'returnPoint']);
 
     //      University Routes
-    Route::post('/searchUniversitiesRoutes', [UniversityRoutesController::class, 'searchUniversitiesRoutes']);
     Route::post('/returnUniversitiesRoutes', [UniversityRoutesController::class, 'returnUniversitiesRoutes']);
+    Route::post('returnFavoriteUniversities', [UniversityRoutesController::class, 'returnFavoriteUniversities']);
+
+    // Tracking Bus
+    // Route::prefix('buses')->group(function () {
+    //     Route::post('location', [BusController::class, 'updateLocation']);
+    // });
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();
     });
