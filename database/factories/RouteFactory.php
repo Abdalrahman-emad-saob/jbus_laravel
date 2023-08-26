@@ -147,7 +147,7 @@ class RouteFactory extends Factory
                     ],
                 ],
             ]),
-            'fee' => 1.15,
+            'fee' => 115,
         ];
     }
 }
