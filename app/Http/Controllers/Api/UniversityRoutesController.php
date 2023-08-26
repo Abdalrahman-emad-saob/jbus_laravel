@@ -29,6 +29,8 @@ class UniversityRoutesController extends Controller
 
     public function returnFavoriteUniversities(Request $request)
     {
-        return University::whereHas('universityRoute.route.favoritePoints')->get();
+        return University::whereHas('universityRoute.route.favoritePoints', function($query) use ($request) {
+            $query->where('id', $request->id);
+        })->get();
     }
 }
