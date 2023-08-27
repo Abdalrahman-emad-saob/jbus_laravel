@@ -34,7 +34,7 @@ class PointController extends Controller
         return true;
     }
 
-    public function returnFavorites(Request $request)
+    public function favorites(Request $request)
     {
         $request->validate([
             'passenger_id' => 'required',
@@ -47,7 +47,7 @@ class PointController extends Controller
             ->get();
     }
 
-    public function returnTripsandFavorites(Request $request)
+    public function tripsandFavorites(Request $request)
     {
         $request->validate([
             'passenger_id' => 'required',
@@ -68,7 +68,7 @@ class PointController extends Controller
         return Point::find($request->point_id)->delete();
     }
 
-    public function returnPoint(Request $request)
+    public function point(Request $request)
     {
         return Point::where('id', $request->id)->get();
     }
