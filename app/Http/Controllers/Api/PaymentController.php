@@ -53,7 +53,7 @@ class PaymentController extends Controller
             return response()->json(['error' => 'QR code generation failed']);
         }
 
-        $qrcodeData = route('payment.pay-driver', ['bus_id' => $user->bus->id]);
+        $qrcodeData = route('payment.pay-driver', ['bus_id' => $user->bus->id], false);
 
         $result = Builder::create()
             ->writer(new PngWriter())

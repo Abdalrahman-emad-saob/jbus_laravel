@@ -11,7 +11,9 @@ use Laravel\Cashier\Http\Controllers\WebhookController;
 use App\Http\Controllers\Api\PointController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\UniversityRoutesController;
+use App\Http\Controllers\Api\UpdateController;
 use App\Http\Controllers\Api\BusController;
+use App\Http\Controllers\Api\TripController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +34,12 @@ Route::prefix('v1')->group(function () {
         Route::post('/login', [LoginController::class, 'login']);
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
         //      register
-        Route::post('register', [RegisterController::class, 'register']);
-        Route::post('verifyOTP', [RegisterController::class, 'verifyOTP']);
-        Route::post('createUser', [RegisterController::class, 'createUser']);
+        Route::post('register/createOTP', [RegisterController::class, 'createOTP']);
+        Route::post('register/createUser', [RegisterController::class, 'createUser']);
+        Route::post('update/createOTP', [UpdateController::class, 'createOTP']);
+        Route::post('update/email', [UpdateController::class, 'updateEmail']);
+        Route::post('update/phoneNumber', [UpdateController::class, 'updatePhoneNumber']);
+        Route::post('update/updatePFP', [UpdateController::class, 'updatePFP']);
 
         Route::prefix('{provider}')->group(function () {
             Route::get('/', [SocialiteController::class, 'oAuthRedirect']);
@@ -80,4 +85,6 @@ Route::prefix('v1')->group(function () {
             ->middleware(['auth:sanctum', 'checkIfDriver'])
             ->name('payment.generate-qr-code');
     });
+
+    Route::put('/rate-trip', [TripController::class, 'rateTrip'])->middleware('auth:sanctum');
 });
