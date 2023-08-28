@@ -26,7 +26,7 @@ class RegisterController extends Controller
     }
 
     // Generate OTP
-    $otp = mt_rand(0000, 9999);
+    $otp = mt_rand(1000, 9999);
 
     // Create OTP record
     $otpRecord = OTP::create([
