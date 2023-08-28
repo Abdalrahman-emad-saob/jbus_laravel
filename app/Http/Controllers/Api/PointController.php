@@ -61,12 +61,26 @@ class PointController extends Controller
     }
 
     public function deleteFavorite(Request $request)
-    {
-        $request->validate([
-            'point_id' => 'required',
-        ]);
-        return Point::find($request->point_id)->delete();
+{
+    $request->validate([
+        'favorite_id' => 'required',
+    ]);
+
+    $favorite = FavoritePoint::find($request->favorite_id);
+
+    if ($favorite) {
+        $favorite->delete();
+
+        if ($favorite->point) {
+            $favorite->point->delete();
+        }
+
+        return response()->json(['message' => 'Favorite point and related point deleted successfully']);
     }
+
+    return response()->json(['message' => 'Favorite point not found'], 404);
+}
+
 
     public function point(Request $request)
     {
