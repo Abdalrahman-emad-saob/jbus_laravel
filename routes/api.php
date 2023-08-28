@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\PointController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\UniversityRoutesController;
 use App\Http\Controllers\Api\BusController;
+use App\Http\Controllers\Api\TripController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,4 +81,6 @@ Route::prefix('v1')->group(function () {
             ->middleware(['auth:sanctum', 'checkIfDriver'])
             ->name('payment.generate-qr-code');
     });
+
+    Route::put('/rate-trip', [TripController::class, 'rateTrip'])->middleware('auth:sanctum');
 });
