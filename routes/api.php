@@ -47,15 +47,15 @@ Route::prefix('v1')->group(function () {
 
     //      Favorite
     Route::post('/addToFavorite', [PointController::class, 'addToFavorite']);
-    Route::post('/returnFavorites', [PointController::class, 'returnFavorites']);
-    Route::post('/returnTripsandFavorites', [PointController::class, 'returnTripsandFavorites']);
+    Route::post('/favorites', [PointController::class, 'favorites']);
+    Route::post('/tripsandFavorites', [PointController::class, 'TripsandFavorites']);
     Route::post('/deleteFavorite', [PointController::class, 'deleteFavorite']);
     //      Return Point
-    Route::post('returnPoint', [PointController::class, 'returnPoint']);
+    Route::post('point', [PointController::class, 'point']);
 
     //      University Routes
-    Route::post('/returnUniversitiesRoutes', [UniversityRoutesController::class, 'returnUniversitiesRoutes']);
-    Route::post('returnFavoriteUniversities', [UniversityRoutesController::class, 'returnFavoriteUniversities']);
+    Route::post('/universitiesRoutes', [UniversityRoutesController::class, 'universitiesRoutes']);
+    Route::post('favoriteUniversities', [UniversityRoutesController::class, 'favoriteUniversities']);
 
     // Tracking Bus
     // Route::prefix('buses')->group(function () {
