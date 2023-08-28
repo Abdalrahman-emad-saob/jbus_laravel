@@ -84,6 +84,6 @@ class PointController extends Controller
 
     public function point(Request $request)
     {
-        return Point::where('id', $request->id)->get();
+        return Point::where('id', $request->point_id)->get();
     }
 }

@@ -31,7 +31,7 @@ class InterestRoutesController extends Controller
     public function favoriteInterests(Request $request)
     {
         return InterestPoint::whereHas('universityRoute.route.favoritePoints', function($query) use ($request) {
-            $query->where('id', $request->id);
+            $query->where('id', $request->passenger_id);
         })->get();
     }
 }
