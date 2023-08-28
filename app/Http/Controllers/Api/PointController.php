@@ -75,10 +75,10 @@ class PointController extends Controller
             $favorite->point->delete();
         }
 
-        return response()->json(['message' => 'Favorite point and related point deleted successfully']);
+        return true;
     }
 
-    return response()->json(['message' => 'Favorite point not found'], 404);
+    return false;
 }
 
 
