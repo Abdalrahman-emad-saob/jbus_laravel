@@ -31,7 +31,7 @@ class LoginController extends Controller
                     'success' => true,
                     'token' => $token,
                     'user' => $user,
-                    // 'role' => $user->driverProfile
+                    // 'profile' => $user->driverProfile
                 ]);
             }
         }
