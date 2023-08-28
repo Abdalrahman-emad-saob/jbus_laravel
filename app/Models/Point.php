@@ -23,18 +23,14 @@ class Point extends Model
     }
     public function trips_pickup()
     {
-        return $this->belongsTo(Trip::class, 'pickup_point_id', 'id');
+        return $this->hasOne(Trip::class, 'pickup_point_id', 'id');
     }
     public function trips_dropoff()
     {
-        return $this->belongsTo(Trip::class, 'dropoff_point_id', 'id');
+        return $this->hasOne(Trip::class, 'dropoff_point_id', 'id');
     }
-    public function routes_going()
+    public function interest_point_location()
     {
-        return $this->belongsTo(Route::class, 'starting_point', 'id');
-    }
-    public function routs_returning()
-    {
-        return $this->belongsTo(Route::class, 'ending_point', 'id');
+        return $this->hasOne(InterestPoint::class, 'location', 'id');
     }
 }

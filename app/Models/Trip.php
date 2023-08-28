@@ -26,6 +26,8 @@ class Trip extends Model
     static $canceled = 'CANCELED';
     static $completed = 'COMPLETED';
     static $onGoing = 'ONGOING';
+    static $pending = 'PENDING';
+
 
     // relationships
 

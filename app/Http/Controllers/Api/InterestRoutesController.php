@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\University;
+use App\Models\InterestPoint;
 use Illuminate\Http\Request;
 
-class UniversityRoutesController extends Controller
+class InterestRoutesController extends Controller
 {
-    public function universitiesRoutes(Request $request)
+    public function interestRoutes(Request $request)
     {
         // $universityName = $request->name;
 
@@ -18,7 +18,8 @@ class UniversityRoutesController extends Controller
         //     ->get();
         // return response()->json($routes);
         $id = $request->passenger_id;
-        $universities = University::with(['universityRoute' => function ($query) use ($id) {
+        // TODO
+        $universities = InterestPoint::with(['universityRoute' => function ($query) use ($id) {
             $query->with(['route.favoritePoints' => function ($query) use ($id) {
                 $query->where('passenger_id', $id);
             }]);
@@ -26,10 +27,10 @@ class UniversityRoutesController extends Controller
 
         return $universities;
     }
-
-    public function favoriteUniversities(Request $request)
+    // TODO
+    public function favoriteInterests(Request $request)
     {
-        return University::whereHas('universityRoute.route.favoritePoints', function($query) use ($request) {
+        return InterestPoint::whereHas('universityRoute.route.favoritePoints', function($query) use ($request) {
             $query->where('id', $request->id);
         })->get();
     }

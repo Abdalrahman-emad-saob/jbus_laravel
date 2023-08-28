@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('routes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('starting_point')->constrained('points');
-            $table->foreignId('ending_point')->constrained('points');
             $table->json('waypoints_going');
             $table->json('waypoints_returning');
             $table->integer('fee');
+
+            $table->foreignId('starting_point')->constrained('interest_points')->cascadeOnDelete();
+            $table->foreignId('ending_point')->constrained('interest_points')->cascadeOnDelete();
+
             $table->timestamps();
         });
     }

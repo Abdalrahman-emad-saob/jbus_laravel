@@ -10,7 +10,7 @@ use App\Http\Controllers\Api\Auth\RegisterController;
 use Laravel\Cashier\Http\Controllers\WebhookController;
 use App\Http\Controllers\Api\PointController;
 use App\Http\Controllers\Api\PaymentController;
-use App\Http\Controllers\Api\UniversityRoutesController;
+use App\Http\Controllers\Api\InterestRoutesController;
 use App\Http\Controllers\Api\UpdateController;
 use App\Http\Controllers\Api\BusController;
 use App\Http\Controllers\Api\TripController;
@@ -47,25 +47,21 @@ Route::prefix('v1')->group(function () {
         })->whereIn('provider', ['facebook', 'google']);
     });
     //      Reset Passowrd
-    Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
-    Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword']);
+    Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
+    Route::post('reset-password', [ForgotPasswordController::class, 'resetPassword']);
 
     //      Favorite
-    Route::post('/addToFavorite', [PointController::class, 'addToFavorite']);
-    Route::post('/favorites', [PointController::class, 'favorites']);
-    Route::post('/tripsandFavorites', [PointController::class, 'TripsandFavorites']);
-    Route::post('/deleteFavorite', [PointController::class, 'deleteFavorite']);
+    Route::post('addToFavorite', [PointController::class, 'addToFavorite']);
+    Route::post('favorites', [PointController::class, 'favorites']);
+    Route::post('tripsandFavorites', [PointController::class, 'TripsandFavorites']);
+    Route::post('deleteFavorite', [PointController::class, 'deleteFavorite']);
     //      Return Point
     Route::post('point', [PointController::class, 'point']);
 
     //      University Routes
-    Route::post('/universitiesRoutes', [UniversityRoutesController::class, 'universitiesRoutes']);
-    Route::post('favoriteUniversities', [UniversityRoutesController::class, 'favoriteUniversities']);
+    Route::post('interestRoutes', [InterestRoutesController::class, 'interestRoutes']);
+    Route::post('favoriteInterests', [InterestRoutesController::class, 'favoriteInterests']);
 
-    // Tracking Bus
-    // Route::prefix('buses')->group(function () {
-    //     Route::post('location', [BusController::class, 'updateLocation']);
-    // });
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();
     });

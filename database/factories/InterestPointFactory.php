@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\Point;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\University>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\InterestPoint>
  */
-class UniversityFactory extends Factory
+class InterestPointFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +19,8 @@ class UniversityFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'logo' => 'storage/5.png'
+            'logo' => 'storage/5.png',
+            'location' => Point::all()->random()->id,
         ];
     }
 }
