@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class UniversityRoutesController extends Controller
 {
-    public function returnUniversitiesRoutes(Request $request)
+    public function universitiesRoutes(Request $request)
     {
         // $universityName = $request->name;
 
@@ -27,7 +27,7 @@ class UniversityRoutesController extends Controller
         return $universities;
     }
 
-    public function returnFavoriteUniversities(Request $request)
+    public function favoriteUniversities(Request $request)
     {
         return University::whereHas('universityRoute.route.favoritePoints', function($query) use ($request) {
             $query->where('id', $request->id);
