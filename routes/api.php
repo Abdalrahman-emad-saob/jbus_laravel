@@ -67,7 +67,7 @@ Route::prefix('v1')->group(function () {
     //     Route::post('location', [BusController::class, 'updateLocation']);
     // });
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-        return $request->user();
+        return response()->json($request->user()->load(['passengerProfile']));
     });
 
     //      Payments
