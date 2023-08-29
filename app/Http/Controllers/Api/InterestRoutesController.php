@@ -12,13 +12,7 @@ class InterestRoutesController extends Controller
 {
     public function interestRoutes(Request $request)
     {
-        // $universityName = $request->name;
-
-        // $routes = University::where('name', 'like', '%' . $universityName . '%')
-        //     ->with('UniversityRoute.route')
         //     ->limit(5)
-        //     ->get();
-        // return response()->json($routes);
         $id = $request->passenger_id;
         $interestRoutes = InterestPoint::with(['route_starting.favoritePoints' => function ($query) use ($id) {
                 $query->where('passenger_id', $id);
