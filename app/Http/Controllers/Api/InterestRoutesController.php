@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\InterestPoint;
+use App\Models\Point;
+use App\Models\Route;
 use Illuminate\Http\Request;
 
 class InterestRoutesController extends Controller
@@ -18,20 +20,25 @@ class InterestRoutesController extends Controller
         //     ->get();
         // return response()->json($routes);
         $id = $request->passenger_id;
-        // TODO
-        $universities = InterestPoint::with(['universityRoute' => function ($query) use ($id) {
-            $query->with(['route.favoritePoints' => function ($query) use ($id) {
+        $interestRoutes = InterestPoint::with(['route_starting.favoritePoints' => function ($query) use ($id) {
                 $query->where('passenger_id', $id);
-            }]);
-        }])->get();
+            }])->get();
 
-        return $universities;
+        return $interestRoutes;
     }
-    // TODO
-    public function favoriteInterests(Request $request)
+
+    public function favoriteRoutes(Request $request)
     {
-        return InterestPoint::whereHas('universityRoute.route.favoritePoints', function($query) use ($request) {
-            $query->where('id', $request->passenger_id);
-        })->get();
+        $passengerId = $request->passenger_id;
+
+        $routesWithFavoritePoints = Route::whereHas('favoritePoints', function ($query) use ($passengerId) {
+            $query->where('passenger_id', $passengerId);
+        })
+            ->with(['favoritePoints' => function ($query) use ($passengerId) {
+                $query->where('passenger_id', $passengerId);
+            }])
+            ->get();
+
+        return $routesWithFavoritePoints;
     }
 }

@@ -19,7 +19,7 @@ class Route extends Model
         'waypoints_returning',
     ];
 
-        public function favoritePoints()
+    public function favoritePoints()
     {
         return $this->hasMany(FavoritePoint::class, 'route_id', 'id');
     }
@@ -40,6 +40,4 @@ class Route extends Model
     {
         return $this->belongsTo(InterestPoint::class, 'ending_point', 'id');
     }
-
-
 }

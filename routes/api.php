@@ -58,9 +58,9 @@ Route::prefix('v1')->group(function () {
     //      Return Point
     Route::post('point', [PointController::class, 'point']);
 
-    //      University Routes
+    //      Interest Routes
     Route::post('interestRoutes', [InterestRoutesController::class, 'interestRoutes']);
-    Route::post('favoriteInterests', [InterestRoutesController::class, 'favoriteInterests']);
+    Route::post('favoriteRoutes', [InterestRoutesController::class, 'favoriteRoutes']);
 
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return $request->user();

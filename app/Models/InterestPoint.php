@@ -17,10 +17,10 @@ class InterestPoint extends Model
         'location'
     ];
 
-    public function InterestRoute()
-    {
-        return $this->hasMany(InterestRoute::class, 'interest_point_id', 'id');
-    }
+    // public function InterestRoute()
+    // {
+    //     return $this->hasMany(InterestRoute::class, 'interest_point_id', 'id');
+    // }
     public function route_starting()
     {
         return $this->hasOne(Route::class, 'starting_point', 'id');
