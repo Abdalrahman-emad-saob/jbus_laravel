@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('university_routes', function (Blueprint $table) {
+        Schema::create('interest_points', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('university_id')->constrained('universities')->cascadeOnDelete();
-            $table->foreignId('route_id')->constrained('routes')->cascadeOnDelete();
+            $table->string('name');
+            $table->text('logo');
+
+            $table->foreignId('location')->constrained('points')->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('university_routes');
+        Schema::dropIfExists('interest_points');
     }
 };

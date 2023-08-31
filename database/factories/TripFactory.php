@@ -24,7 +24,7 @@ class TripFactory extends Factory
         return [
             'rating' => rand(1, 5),
             'finished_at' => now(),
-            'status' => Arr::random([Trip::$canceled, Trip::$completed]),
+            'status' => Arr::random([Trip::$canceled, Trip::$completed, Trip::$pending, Trip::$onGoing]),
             'passenger_id' => User::where('role', User::$passenger)->inRandomOrder()->first()->id,
             'route_id' => Route::all()->random()->id,
             'pickup_point_id' => Point::all()->random()->id,

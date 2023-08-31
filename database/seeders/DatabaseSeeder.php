@@ -37,10 +37,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\OTP::factory(10)->create();
         \App\Models\PassengerProfile::factory(10)->create();
         \App\Models\Point::factory(10)->create();
+        \App\Models\InterestPoint::factory(10)->create();
         \App\Models\Route::factory(10)->create();
-        \App\Models\University::factory(10)->create();
         \App\Models\FavoritePoint::factory(10)->create();
-        \App\Models\UniversityRoute::factory(10)->create();
         \App\Models\Bus::factory(10)->create();
         \App\Models\Trip::factory(10)->create();
         \App\Models\PaymentTransaction::factory(10)->create();

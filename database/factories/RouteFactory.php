@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\InterestPoint;
 use App\Models\Point;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
@@ -21,8 +22,8 @@ class RouteFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'starting_point' => Point::all()->random()->id,
-            'ending_point' => Point::all()->random()->id,
+            'starting_point' => InterestPoint::all()->random()->id,
+            'ending_point' => InterestPoint::all()->random()->id,
             'waypoints_going' => json_encode([
                 [
                     "Location" => [
@@ -147,7 +148,7 @@ class RouteFactory extends Factory
                     ],
                 ],
             ]),
-            'fee' => 115,
+            'fee' => Arr::random([115, 150, 55]),
         ];
     }
 }
