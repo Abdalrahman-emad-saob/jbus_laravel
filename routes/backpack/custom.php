@@ -19,7 +19,7 @@ Route::group([
 
     Route::crud('bus', 'BusCrudController');
     Route::crud('favorite-point', 'FavoritePointCrudController');
-    Route::crud('o-t-p', 'OTPCrudController');
+    // Route::crud('o-t-p', 'OTPCrudController');
     Route::crud('passenger-profile', 'PassengerProfileCrudController');
     Route::crud('payment-transaction', 'PaymentTransactionCrudController');
     Route::crud('route', 'RouteCrudController');

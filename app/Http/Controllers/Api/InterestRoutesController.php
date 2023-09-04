@@ -12,13 +12,13 @@ class InterestRoutesController extends Controller
 {
     public function interestRoutes(Request $request)
     {
+        $passengerId = $request->passenger_id;
         //     ->limit(5)
-        $id = $request->passenger_id;
-        $interestRoutes = InterestPoint::with(['route_starting.favoritePoints' => function ($query) use ($id) {
-                $query->where('passenger_id', $id);
-            }])->get();
-
-        return $interestRoutes;
+        
+        $routes = Route::whereHas('favoritePoints', function ($query) use ($passengerId) {
+            $query->where('passenger_id', $passengerId);
+        })->with(['interest_point_starting', 'interest_point_ending', 'favoritePoints'])->get();
+        return $routes;
     }
 
     public function favoriteRoutes(Request $request)
