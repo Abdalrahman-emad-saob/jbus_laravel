@@ -38,7 +38,7 @@
             <h1>Welcome to Jbus App</h1>
         </div>
         <div class="content">
-            <p>Hello {{ $user->name }},</p>
+            <p>Hello {{ $user['name'] }},</p>
             <p>Welcome to Jbus App! Your account has been created successfully.</p>
             <p>Your password is: <strong>{{ $password }}</strong></p>
             <p>Please log in using your email and the provided password.</p>
