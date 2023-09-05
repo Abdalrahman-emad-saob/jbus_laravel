@@ -17,6 +17,7 @@ class Route extends Model
         'ending_point',
         'waypoints_going',
         'waypoints_returning',
+        'fee',
     ];
 
     public function favoritePoints()

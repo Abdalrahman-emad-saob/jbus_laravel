@@ -34,11 +34,11 @@ class PaymentController extends Controller
         $bus = Bus::find($request->bus_id);
         $passengerProfile = Auth::user()->passengerProfile;
 
-        if ($passengerProfile->wallet < 100) {
+        if ($passengerProfile->wallet < $bus->route->fee) {
             return response()->json(['message' => 'Insufficient credits'], 402);
         }
 
-        $passengerProfile->wallet -= 100;
+        $passengerProfile->wallet -= $bus->route->fee;
 
         $passengerProfile->save();
 
