@@ -32,7 +32,7 @@ Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
         //      login
         Route::post('/login', [LoginController::class, 'login']);
-        Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+        Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum')->name('logout');
         //      register
         Route::post('register/createOTP', [RegisterController::class, 'createOTP']);
         Route::post('register/createUser', [RegisterController::class, 'createUser']);
@@ -48,19 +48,22 @@ Route::prefix('v1')->group(function () {
     });
     //      Reset Passowrd
     Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
-    Route::post('reset-password', [ForgotPasswordController::class, 'resetPassword']);
+    Route::post('reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('reset-password');
 
-    //      Favorite
-    Route::post('addToFavorite', [PointController::class, 'addToFavorite']);
-    Route::post('favorites', [PointController::class, 'favorites']);
-    Route::post('tripsandFavorites', [PointController::class, 'TripsandFavorites']);
-    Route::post('deleteFavorite', [PointController::class, 'deleteFavorite']);
-    //      Return Point
-    Route::post('point', [PointController::class, 'point']);
+    Route::middleware('auth:sanctum')->group(function () {
+        //      Favorite
+        Route::post('addToFavorite', [PointController::class, 'addToFavorite']);
+        Route::post('favorites', [PointController::class, 'favorites']);
+        Route::post('tripsandFavorites', [PointController::class, 'TripsandFavorites']);
+        Route::post('deleteFavorite', [PointController::class, 'deleteFavorite']);
+        //      Return Point
+        Route::post('point', [PointController::class, 'point']);
 
-    //      Interest Routes
-    Route::post('interestRoutes', [InterestRoutesController::class, 'interestRoutes']);
-    Route::post('favoriteRoutes', [InterestRoutesController::class, 'favoriteRoutes']);
+        //      Interest Routes
+        Route::post('interestRoutes', [InterestRoutesController::class, 'interestRoutes']);
+        Route::post('favoriteRoutes', [InterestRoutesController::class, 'favoriteRoutes']);
+    });
+
 
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         return response()->json($request->user()->load(['passengerProfile']));

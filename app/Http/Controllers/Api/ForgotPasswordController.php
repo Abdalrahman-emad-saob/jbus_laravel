@@ -12,25 +12,22 @@ use App\Mail\ResetPasswordEmail;
 use App\Models\InterestPoint;
 use App\Models\InterestRoute;
 use Illuminate\Support\Arr;
-
+// TODO: rework to OTP
 class ForgotPasswordController extends Controller
 {
 
     public function sendResetLinkEmail(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email',
+        $validatedData = $request->validate([
+            'email' => 'required|email|exists:users,email',
         ]);
 
         $user = User::where('email', $request->email)->first();
 
-        if (!$user) {
-            return response()->json(['message' => 'Email not found'], 404);
-        }
 
         $token = $this->broker()->createToken($user);
-
-        Mail::to($user->email)->send(new ResetPasswordEmail($user, route('reset_password', ['token' => $token])));
+        // TODO: make email
+        Mail::to($user->email)->send(new ResetPasswordEmail($user, route('reset-password', ['token' => $token])));
 
         return response()->json([
             'message' => 'Password reset link sent successfully',
@@ -45,13 +42,13 @@ class ForgotPasswordController extends Controller
             'token' => 'required',
             'password' => 'required|confirmed',
         ]);
+
         $user = User::where('email', $request->email)->first();
+
         if (!$this->broker()->tokenExists($user, $request->token)) {
             return response()->json(['message' => 'Invalid token'], 400);
         }
-        if ($request->password !== $request->password_confirmation) {
-            return response()->json(['message' => 'Password confirmation does not match'], 400);
-        }
+
         $response = $this->broker()->reset(
             $request->only(
                 'email',
@@ -77,7 +74,4 @@ class ForgotPasswordController extends Controller
     {
         return Password::broker();
     }
-
-
-
 }
