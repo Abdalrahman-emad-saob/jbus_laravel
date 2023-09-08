@@ -31,7 +31,7 @@ class PointController extends Controller
             'route_id' => $request->route_id
         ]);
 
-        return response()->json([], 200);
+        return response()->json(['message' => 'Point added to favorite successfully'], 200);
     }
 
     public function favorites(Request $request)

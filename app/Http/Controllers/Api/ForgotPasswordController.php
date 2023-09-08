@@ -33,7 +33,7 @@ class ForgotPasswordController extends Controller
 
     public function resetPassword(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'email' => 'required|email',
             'token' => 'required',
             'password' => 'required|confirmed',
@@ -66,6 +66,7 @@ class ForgotPasswordController extends Controller
             ])
             : response()->json(['message' => 'Unable to reset password'], 400);
     }
+
 
     public function broker()
     {

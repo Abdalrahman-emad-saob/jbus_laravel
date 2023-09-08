@@ -30,6 +30,6 @@ class InterestRoutesController extends Controller
             $query->where('passenger_id', $passengerId);
         })->with(['interest_point_starting', 'interest_point_ending', 'favoritePoints'])->get();
 
-        return $routesWithFavoritePoints;
+        return response()->json(['routes-with-favorite-points' => $routesWithFavoritePoints]);
     }
 }
