@@ -4,8 +4,68 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dcc3b396576305ce0691cab4ddf76704",
+    "content-hash": "49f4b77834be42be3b9b32fd6d02b7f0",
     "packages": [
+        {
+            "name": "abr4xas/gmaps-input-backpack",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/abr4xas/gmaps-input-backpack.git",
+                "reference": "04461d09a77655fe39e637b9639e5ad2b5493248"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/abr4xas/gmaps-input-backpack/zipball/04461d09a77655fe39e637b9639e5ad2b5493248",
+                "reference": "04461d09a77655fe39e637b9639e5ad2b5493248",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Abr4xas\\CustomGoogleMapsFieldForBackpack\\AddonServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Abr4xas\\CustomGoogleMapsFieldForBackpack\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "angel cruz",
+                    "email": "angel@tepuilabs.dev",
+                    "homepage": "https://angelcruz.dev",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Custom Google Maps Input for Laravel Backpack",
+            "keywords": [
+                "Backpack for Laravel",
+                "addon",
+                "admin panel",
+                "backpack",
+                "google maps",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/abr4xas/gmaps-input-backpack/issues",
+                "source": "https://github.com/abr4xas/gmaps-input-backpack/tree/v2.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/abr4xas",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-01-29T21:07:19+00:00"
+        },
         {
             "name": "backpack/basset",
             "version": "1.1.1",

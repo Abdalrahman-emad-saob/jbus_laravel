@@ -26,4 +26,7 @@ Route::group([
     Route::crud('trip', 'TripCrudController');
     Route::crud('university', 'UniversityCrudController');
     Route::crud('user', 'UserCrudController');
+    Route::get('maps', function() {
+        return view('createRoute');
+    });
 }); // this should be the absolute last line of this file
