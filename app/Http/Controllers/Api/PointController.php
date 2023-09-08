@@ -47,26 +47,19 @@ class PointController extends Controller
 
     public function tripsAndFavorites(Request $request)
     {
-        $request->validate([
-            'passenger_id' => 'required',
-        ]);
 
-        $data = Trip::where('passenger_id', $request->passenger_id)
+        $data = Trip::where('passenger_id', auth()->user()->id)
             ->with(['route.favoritePoints' => function ($query) use ($request) {
-                $query->where('passenger_id', $request->passenger_id)
+                $query->where('passenger_id', auth()->user()->id)
                     ->with('point');
             }])->get();
 
         return response()->json(['data' => $data]);
     }
 
-    public function deleteFavorite(Request $request)
+    public function deleteFavorite(Request $request, $id)
     {
-        $request->validate([
-            'favorite_id' => 'required',
-        ]);
-
-        $favorite = FavoritePoint::find($request->favorite_id);
+        $favorite = FavoritePoint::find($id);
 
         if ($favorite) {
             $favorite->delete();
@@ -78,12 +71,12 @@ class PointController extends Controller
             return response()->json(['message' => 'point deleted successfully'], 200);
         }
 
-        return response()->json(['message' => 'point not found'], 404);;
+        return response()->json(['message' => 'point not found'], 404);
     }
 
 
-    public function point(Request $request)
+    public function point(Request $request, $id)
     {
-        return response()->json(['point' => Point::where('id', $request->point_id)->get()]);
+        return response()->json(['point' => Point::where('id', $id)->get()]);
     }
 }

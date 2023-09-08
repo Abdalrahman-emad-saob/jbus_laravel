@@ -50,15 +50,15 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         //      Favorite
         Route::post('addToFavorite', [PointController::class, 'addToFavorite']);
-        Route::post('favorites', [PointController::class, 'favorites']);
-        Route::post('trips-and-favorites', [PointController::class, 'tripsAndFavorites']);
-        Route::post('deleteFavorite', [PointController::class, 'deleteFavorite']);
+        Route::get('favorites', [PointController::class, 'favorites']);
+        Route::get('trips-and-favorites', [PointController::class, 'tripsAndFavorites']);
+        Route::delete('deleteFavorite/{id}', [PointController::class, 'deleteFavorite']);
         //      Return Point
-        Route::post('point', [PointController::class, 'point']);
+        Route::get('point/{id}', [PointController::class, 'point']);
 
         //      Interest Routes
-        Route::post('interestRoutes', [InterestRoutesController::class, 'interestRoutes']);
-        Route::post('favoriteRoutes', [InterestRoutesController::class, 'favoriteRoutes']);
+        Route::get('interestRoutes', [InterestRoutesController::class, 'interestRoutes']);
+        Route::get('favoriteRoutes', [InterestRoutesController::class, 'favoriteRoutes']);
     });
 
 
