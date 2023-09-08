@@ -1,19 +1,17 @@
 <?php
 
-use App\Http\Controllers\Api\Auth\SocialiteController;
-use App\Http\Controllers\Api\Auth\LoginController;
+use App\{Http\Controllers\Api\Auth\LoginController,
+    Http\Controllers\Api\Auth\RegisterController,
+    Http\Controllers\Api\Auth\SocialiteController,
+    Http\Controllers\Api\ForgotPasswordController,
+    Http\Controllers\Api\InterestRoutesController,
+    Http\Controllers\Api\PaymentController,
+    Http\Controllers\Api\PointController,
+    Http\Controllers\Api\TripController,
+    Http\Controllers\Api\UpdateController};
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\ForgotPasswordController;
-use App\Http\Controllers\Api\Auth\RegisterController;
 use Laravel\Cashier\Http\Controllers\WebhookController;
-use App\Http\Controllers\Api\PointController;
-use App\Http\Controllers\Api\PaymentController;
-use App\Http\Controllers\Api\InterestRoutesController;
-use App\Http\Controllers\Api\UpdateController;
-use App\Http\Controllers\Api\BusController;
-use App\Http\Controllers\Api\TripController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +23,6 @@ use App\Http\Controllers\Api\TripController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
 
 
 Route::prefix('v1')->group(function () {
@@ -46,7 +43,7 @@ Route::prefix('v1')->group(function () {
             Route::get('/callback', [SocialiteController::class, 'oAuthCallback']);
         })->whereIn('provider', ['facebook', 'google']);
     });
-    //      Reset Passowrd
+    //      Reset Password
     Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
     Route::post('reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('reset-password');
 
@@ -54,7 +51,7 @@ Route::prefix('v1')->group(function () {
         //      Favorite
         Route::post('addToFavorite', [PointController::class, 'addToFavorite']);
         Route::post('favorites', [PointController::class, 'favorites']);
-        Route::post('tripsandFavorites', [PointController::class, 'TripsandFavorites']);
+        Route::post('trips-and-favorites', [PointController::class, 'tripsAndFavorites']);
         Route::post('deleteFavorite', [PointController::class, 'deleteFavorite']);
         //      Return Point
         Route::post('point', [PointController::class, 'point']);
@@ -66,7 +63,7 @@ Route::prefix('v1')->group(function () {
 
 
     Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-        return response()->json($request->user()->load(['passengerProfile']));
+        return response()->json(['user' => $request->user()->load(['passengerProfile'])]);
     });
 
     //      Payments

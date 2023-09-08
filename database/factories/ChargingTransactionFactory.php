@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Model\Stripe;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ChargingTransaction>

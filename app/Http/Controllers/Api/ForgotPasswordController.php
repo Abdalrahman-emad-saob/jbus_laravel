@@ -3,15 +3,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Support\Facades\Mail;
+use App\{Http\Controllers\Controller, Mail\ResetPasswordEmail, Models\User};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
-use App\Mail\ResetPasswordEmail;
-use App\Models\InterestPoint;
-use App\Models\InterestRoute;
-use Illuminate\Support\Arr;
+
 // TODO: rework to OTP
 class ForgotPasswordController extends Controller
 {
@@ -70,6 +66,7 @@ class ForgotPasswordController extends Controller
             ])
             : response()->json(['message' => 'Unable to reset password'], 400);
     }
+
     public function broker()
     {
         return Password::broker();
