@@ -28,8 +28,8 @@ use Laravel\Cashier\Http\Controllers\WebhookController;
 Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
         //      login
-        Route::post('/login', [LoginController::class, 'login']);
-        Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum')->name('logout');
+        Route::post('login', [LoginController::class, 'login']);
+        Route::post('logout', [LoginController::class, 'logout'])->middleware('auth:sanctum')->name('logout');
         //      register
         Route::post('register/createOTP', [RegisterController::class, 'createOTP']);
         Route::post('register/createUser', [RegisterController::class, 'createUser']);
@@ -40,7 +40,7 @@ Route::prefix('v1')->group(function () {
 
         Route::prefix('{provider}')->group(function () {
             Route::get('/', [SocialiteController::class, 'oAuthRedirect']);
-            Route::get('/callback', [SocialiteController::class, 'oAuthCallback']);
+            Route::get('callback', [SocialiteController::class, 'oAuthCallback']);
         })->whereIn('provider', ['facebook', 'google']);
     });
     //      Reset Password
@@ -62,7 +62,7 @@ Route::prefix('v1')->group(function () {
     });
 
 
-    Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    Route::middleware('auth:sanctum')->get('user', function (Request $request) {
         return response()->json(['user' => $request->user()->load(['passengerProfile'])]);
     });
 
@@ -82,5 +82,71 @@ Route::prefix('v1')->group(function () {
             ->name('payment.generate-qr-code');
     });
 
-    Route::put('/rate-trip', [TripController::class, 'rateTrip'])->middleware('auth:sanctum');
+    Route::put('rate-trip', [TripController::class, 'rateTrip'])->middleware('auth:sanctum');
 });
+
+
+
+//Route::prefix('v2')->group(function () {
+//    // Authentication Routes
+//    Route::prefix('auth')->group(function () {
+//        // Login
+//        Route::post('login', [LoginController::class, 'login'])->name('auth.login');
+//        Route::post('logout', [LoginController::class, 'logout'])
+//            ->middleware('auth:sanctum')
+//            ->name('auth.logout');
+//
+//        // Registration
+//        Route::post('register', [RegisterController::class, 'register'])->name('auth.register');
+//
+//        // Update Profile
+//        Route::middleware('auth:sanctum')->group(function () {
+//            Route::post('profile/update', [UpdateController::class, 'updateProfile'])->name('auth.profile.update');
+//        });
+//
+//        // Password Reset
+//        Route::post('password/forgot', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('auth.password.forgot');
+//        Route::post('password/reset', [ForgotPasswordController::class, 'resetPassword'])->name('auth.password.reset');
+//
+//        // Socialite
+//        Route::prefix('socialite/{provider}')->where(['provider' => 'facebook|google'])->group(function () {
+//            Route::get('redirect', [SocialiteController::class, 'redirectToProvider'])->name('auth.socialite.redirect');
+//            Route::get('callback', [SocialiteController::class, 'handleProviderCallback'])->name('auth.socialite.callback');
+//        });
+//    });
+//
+//    // Password Reset Routes
+//    Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.reset');
+//
+//    // Authenticated Routes
+//    Route::middleware('auth:sanctum')->group(function () {
+//        // Favorites
+//        Route::post('favorites', [FavoriteController::class, 'addToFavorites'])->name('favorites.add');
+//        Route::get('favorites', [FavoriteController::class, 'getFavorites'])->name('favorites.get');
+//        Route::delete('favorites/{id}', [FavoriteController::class, 'deleteFavorite'])->name('favorites.delete');
+//
+//        // Points
+//        Route::get('points/{id}', [PointController::class, 'getPoint'])->name('points.get');
+//
+//        // Interest Routes
+//        Route::get('interest-routes', [InterestRoutesController::class, 'getInterestRoutes'])->name('interest-routes.get');
+//        Route::get('favorite-routes', [InterestRoutesController::class, 'getFavoriteRoutes'])->name('favorite-routes.get');
+//
+//        // User
+//        Route::get('user', [UserController::class, 'getUser'])->name('user.get');
+//
+//        // Payments
+//        Route::prefix('payments')->group(function () {
+//            // Stripe
+//            Route::post('stripe/webhook', [StripeWebhookController::class, 'handleWebhook'])->name('payments.stripe.webhook');
+//            Route::post('stripe/create-payment-intent', [StripePaymentController::class, 'createPaymentIntent'])->name('payments.stripe.create-payment-intent');
+//
+//            // Payment Actions
+//            Route::get('pay-driver', [PaymentController::class, 'payForDriver'])->name('payments.pay-driver');
+//            Route::get('generate-qr-code', [PaymentController::class, 'generateQRCode'])->middleware('checkIfDriver')->name('payments.generate-qr-code');
+//        });
+//
+//        // Rate Trip
+//        Route::put('rate-trip', [TripController::class, 'rateTrip'])->name('rate-trip');
+//    });
+//});
