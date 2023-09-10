@@ -31,6 +31,18 @@ class DatabaseSeeder extends Seeder
         \App\Models\PassengerProfile::factory()->create([
             'passenger_id' => 12,
         ]);
+        \App\Models\Point::factory()->create([
+            'name' => 'North Bus Station',
+            'longitude' => 35.919927,
+            'latitude' => 31.99524,
+        ]);
+        \App\Models\Point::factory()->create([
+            'name' => 'Bus Station Science and Technology University of Jordan\'s position',
+            'longitude' => 35.98608,
+            'latitude' => 32.495025,
+        ]);
+
+
         // \App\Models\PassengerProfile::factory()->create([
         //     'passenger_id' => 11,
         // ]);
