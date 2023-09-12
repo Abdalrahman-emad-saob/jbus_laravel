@@ -30,55 +30,55 @@ class RouteFactory extends Factory
                     ],
                 ],
                 [
-                    "Position" => [
+                    "Location" => [
                         "Latitude" => 52.15991486090931,
                         "Longitude" => 20.804049968719482,
                     ],
                 ],
                 [
-                    "Coordinates" => [
+                    "Location" => [
                         "Latitude" => 52.15772967999426,
                         "Longitude" => 20.805788040161133,
                     ],
                 ],
                 [
-                    "GeoData" => [
+                    "Location" => [
                         "Latitude" => 52.15586034371232,
                         "Longitude" => 20.80460786819458,
                     ],
                 ],
                 [
-                    "Place" => [
+                    "Location" => [
                         "Latitude" => 52.15923693975469,
                         "Longitude" => 20.80113172531128,
                     ],
                 ],
                 [
-                    "Positioning" => [
+                    "Location" => [
                         "Latitude" => 52.159849043774074,
                         "Longitude" => 20.791990756988525,
                     ],
                 ],
                 [
-                    "MapInfo" => [
+                    "Location" => [
                         "Latitude" => 52.15986220720892,
                         "Longitude" => 20.790467262268066,
                     ],
                 ],
                 [
-                    "GPS" => [
+                    "Location" => [
                         "Latitude" => 52.16202095784738,
                         "Longitude" => 20.7806396484375,
                     ],
                 ],
                 [
-                    "PlaceCoordinates" => [
+                    "Location" => [
                         "Latitude" => 52.16088894313116,
                         "Longitude" => 20.77737808227539,
                     ],
                 ],
                 [
-                    "Waypoint" => [
+                    "Location" => [
                         "Latitude" => 52.15255590234335,
                         "Longitude" => 20.784244537353516,
                     ],
@@ -92,55 +92,55 @@ class RouteFactory extends Factory
                     ],
                 ],
                 [
-                    "Position" => [
+                    "Location" => [
                         "Latitude" => 52.15991486090931,
                         "Longitude" => 20.804049968719482,
                     ],
                 ],
                 [
-                    "Coordinates" => [
+                    "Location" => [
                         "Latitude" => 52.15772967999426,
                         "Longitude" => 20.805788040161133,
                     ],
                 ],
                 [
-                    "GeoData" => [
+                    "Location" => [
                         "Latitude" => 52.15586034371232,
                         "Longitude" => 20.80460786819458,
                     ],
                 ],
                 [
-                    "Place" => [
+                    "Location" => [
                         "Latitude" => 52.15923693975469,
                         "Longitude" => 20.80113172531128,
                     ],
                 ],
                 [
-                    "Positioning" => [
+                    "Location" => [
                         "Latitude" => 52.159849043774074,
                         "Longitude" => 20.791990756988525,
                     ],
                 ],
                 [
-                    "MapInfo" => [
+                    "Location" => [
                         "Latitude" => 52.15986220720892,
                         "Longitude" => 20.790467262268066,
                     ],
                 ],
                 [
-                    "GPS" => [
+                    "Location" => [
                         "Latitude" => 52.16202095784738,
                         "Longitude" => 20.7806396484375,
                     ],
                 ],
                 [
-                    "PlaceCoordinates" => [
+                    "Location" => [
                         "Latitude" => 52.16088894313116,
                         "Longitude" => 20.77737808227539,
                     ],
                 ],
                 [
-                    "Waypoint" => [
+                    "Location" => [
                         "Latitude" => 52.15255590234335,
                         "Longitude" => 20.784244537353516,
                     ],
