@@ -20,7 +20,7 @@ class PassengerProfileFactory extends Factory
         return [
             'passenger_id' => User::where('role', User::$passenger)->inRandomOrder()->first()->id,
             'picture' => 'storage/5.png',
-            'wallet' => rand(0, 50)
+            'wallet' => rand(0, 400)
         ];
     }
 }
