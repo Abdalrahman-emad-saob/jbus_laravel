@@ -28,68 +28,69 @@ class DatabaseSeeder extends Seeder
 
 
 
-        \App\Models\User::factory()->create([
+        $abood = \App\Models\User::factory()->create([
             'name' => 'Abood Saob',
             'email' => 'aboodsaob1139@gmail.com',
             'role' => User::$passenger
         ]);
-        \App\Models\User::factory()->create([
+        $fadil =  \App\Models\User::factory()->create([
             'name' => 'Fadl Masri',
             'email' => 'fdlmasri@gmail.com',
             'role' => User::$passenger
         ]);
-        \App\Models\User::factory()->create([
+        $asim = \App\Models\User::factory()->create([
             'name' => 'Asem Qarawy',
             'email' => 'asemqarawy@gmail.com',
             'role' => User::$admin,
         ]);
-        \App\Models\User::factory()->create([
+        $ahmed = \App\Models\User::factory()->create([
             'name' => 'Ahmad King',
             'email' => 'AEMKing@gmail.com',
             'role' => User::$superAdmin,
         ]);
         \App\Models\PassengerProfile::factory()->create([
-            'passenger_id' => 11,
+            'passenger_id' => $abood->id,
+            'wallet' => 150,
         ]);
         \App\Models\PassengerProfile::factory()->create([
-            'passenger_id' => 12,
+            'passenger_id' => $fadil->id,
             'wallet' => 300,
         ]);
         \App\Models\PassengerProfile::factory()->create([
-            'passenger_id' => 13,
+            'passenger_id' => $asim->id,
         ]);
         \App\Models\PassengerProfile::factory()->create([
-            'passenger_id' => 14,
+            'passenger_id' => $ahmed->id,
         ]);
-        \App\Models\Point::factory()->create([
+        $just = \App\Models\Point::factory()->create([
             'name' => 'JUST Bus Station',
             'latitude' => 32.49512209286742,
             'longitude' => 35.98597417188871,
         ]);
-        \App\Models\Point::factory()->create([
+        $north = \App\Models\Point::factory()->create([
             'name' => 'North Bus Station',
             'latitude' => 31.9957018434082,
             'longitude' => 35.91987132195803,
         ]);
-        \App\Models\Point::factory()->create([
+        $jou = \App\Models\Point::factory()->create([
             'name' => 'حي الجامعة الاردنية',
             'latitude' => 32.02511248566629,
             'longitude' => 35.89201395463377,
         ]);
-        \App\Models\InterestPoint::factory()->create([
+        $northi = \App\Models\InterestPoint::factory()->create([
             'name' => 'North Bus Station',
             'logo' => 'storage/5.png',
-            'location' => 11,
+            'location' => $north->id,
         ]);
-        \App\Models\InterestPoint::factory()->create([
+        $justi = \App\Models\InterestPoint::factory()->create([
             'name' => 'JUST Bus Station',
             'logo' => 'storage/5.png',
-            'location' => 12,
+            'location' => $just->id,
         ]);
-        \App\Models\Route::factory()->create([
+        $no_just = \App\Models\Route::factory()->create([
             'name' => 'Amman-JUST',
-            'starting_point' => 11,
-            'ending_point' => 12,
+            'starting_point' => $northi,
+            'ending_point' => $justi,
             'waypoints_going' => json_encode([
                 [
                     "Location" => [
@@ -134,46 +135,46 @@ class DatabaseSeeder extends Seeder
             'fee' => 115,
         ]);
         \App\Models\FavoritePoint::factory()->create([
-            'passenger_id' => 12,
-            'route_id' => 11,
-            'point_id' => 13,
+            'passenger_id' => $fadil,
+            'route_id' => $no_just->id,
+            'point_id' => $jou->id,
         ]);
-        \App\Models\Bus::factory()->create([
+        $bus =  \App\Models\Bus::factory()->create([
             // 'number' => 5012345,
             // 'capacity' => 44,
             // 'route_id' =>  11,
             // 'driver_id' => 1, //i dont think this is needed maybe there are no drivers
             'number' => 5012345,
             'capacity' => 44,
-            'route_id' =>  11,
+            'route_id' =>  $no_just,
             // 'driver_id' => User::where('role', User::$driver)->inRandomOrder()->first()->id,
         ]);
         \App\Models\ChargingTransaction::factory()->create([
-            'passenger_id' => 12,
+            'passenger_id' => $fadil->id,
             'amount' => 300,
         ]);
         \App\Models\Trip::factory()->create([
             'rating' => 5,
             'finished_at' => now(),
             'status' => 'COMPLETED',
-            'passenger_id' => 12,
-            'route_id' => 11,
-            'pickup_point_id' => 13,
-            'dropoff_point_id' => 12,
-            'bus_id' => 11
+            'passenger_id' => $fadil,
+            'route_id' => $no_just->id,
+            'pickup_point_id' => $jou->id,
+            'dropoff_point_id' => $north->id,
+            'bus_id' => $bus->id
         ]);
         \App\Models\Trip::factory()->create([
             'rating' => 5,
             'finished_at' => now(),
             'status' => 'PENDING',
-            'passenger_id' => 11,
-            'route_id' => 11,
-            'pickup_point_id' => 11,
-            'dropoff_point_id' => 12,
+            'passenger_id' => $abood->id,
+            'route_id' => $no_just->id,
+            'pickup_point_id' => $just->id,
+            'dropoff_point_id' => $north->id,
             'bus_id' => 10
         ]);
         \App\Models\PaymentTransaction::factory()->create([
-            'passenger_id' => 12,
+            'passenger_id' => $abood->id,
             'amount' => 115,
         ]);
     }
