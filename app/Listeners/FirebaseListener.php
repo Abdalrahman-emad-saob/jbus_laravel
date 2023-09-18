@@ -1,5 +1,4 @@
 <?php
-use Kreait\Firebase\Database;
 
 $database = app('firebase.database');
 

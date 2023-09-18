@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\FavoritePoint;
 use App\Models\Point;
 use App\Models\Trip;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class PointController extends Controller
 {
@@ -31,59 +31,52 @@ class PointController extends Controller
             'route_id' => $request->route_id
         ]);
 
-        return true;
+        return response()->json(['message' => 'Point added to favorite successfully'], 200);
     }
 
     public function favorites(Request $request)
     {
-        $request->validate([
-            'passenger_id' => 'required',
-        ]);
-
-        return User::where('id', $request->passenger_id)
+        $favoritePoints = User::where('id', auth()->user()->id)
             ->first()
             ->favoritePoints()
             ->with('point')
             ->get();
+
+        return response()->json(['favorite_points' => $favoritePoints]);
     }
 
-    public function tripsandFavorites(Request $request)
+    public function tripsAndFavorites(Request $request)
     {
-        $request->validate([
-            'passenger_id' => 'required',
-        ]);
 
-        return Trip::where('passenger_id', $request->passenger_id)
+        $data = Trip::where('passenger_id', auth()->user()->id)
             ->with(['route.favoritePoints' => function ($query) use ($request) {
-                $query->where('passenger_id', $request->passenger_id)
+                $query->where('passenger_id', auth()->user()->id)
                     ->with('point');
             }])->get();
+
+        return response()->json(['data' => $data]);
     }
 
-    public function deleteFavorite(Request $request)
-{
-    $request->validate([
-        'favorite_id' => 'required',
-    ]);
+    public function deleteFavorite(Request $request, $id)
+    {
+        $favorite = FavoritePoint::find($id);
 
-    $favorite = FavoritePoint::find($request->favorite_id);
+        if ($favorite) {
+            $favorite->delete();
 
-    if ($favorite) {
-        $favorite->delete();
+            if ($favorite->point) {
+                $favorite->point->delete();
+            }
 
-        if ($favorite->point) {
-            $favorite->point->delete();
+            return response()->json(['message' => 'point deleted successfully'], 200);
         }
 
-        return true;
+        return response()->json(['message' => 'point not found'], 404);
     }
 
-    return false;
-}
 
-
-    public function point(Request $request)
+    public function point(Request $request, $id)
     {
-        return Point::where('id', $request->point_id)->get();
+        return response()->json(['point' => Point::where('id', $id)->get()]);
     }
 }

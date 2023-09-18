@@ -22,7 +22,8 @@
         "railsware/mailtrap-php": "^1.7",
         "symfony/http-client": "^6.3",
         "symfony/mailer": "^6.3",
-        "vyuldashev/laravel-openapi": "^1.11"
+        "vyuldashev/laravel-openapi": "^1.11",
+      "ext-pdo": "*"
     },
     "require-dev": {
         "backpack/generators": "^4.0",

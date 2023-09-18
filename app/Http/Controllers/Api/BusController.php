@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Exception;
+use Illuminate\Http\Request;
 use Kreait\Laravel\Firebase\Facades\Firebase;
-use GuzzleHttp\Client;
+
 // use Kreait\Firebase\Exception\AuthException;
 // use Kreait\Firebase\Factory;
 // use Kreait\Firebase\ServiceAccount;

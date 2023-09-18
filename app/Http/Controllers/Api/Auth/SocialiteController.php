@@ -6,24 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Mail\WelcomeEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 
 
 class SocialiteController extends Controller
 {
     // TODO: Google and Facebook OAuth functionalities
 
-    public function oAuthRedirect(Request $request, String $provider)
+    public function oAuthRedirect(Request $request, string $provider)
     {
-        return Socialite::driver($provider)->stateless()->redirect()->getTargetUrl();
+        return response()->json(['url' => Socialite::driver($provider)->stateless()->redirect()->getTargetUrl()]);
     }
 
-    public function oAuthCallback(Request $request, String $provider)
+    public function oAuthCallback(Request $request, string $provider)
     {
         $socialUser = Socialite::driver($provider)->stateless()->user();
 
@@ -37,8 +35,8 @@ class SocialiteController extends Controller
             'role' => User::$passenger,
         ]);
 
-        if (!isset($user[$provider.'_token'])) {
-            $user[$provider.'_token'] = $socialUser->token;
+        if (!isset($user[$provider . '_token'])) {
+            $user[$provider . '_token'] = $socialUser->token;
             $user->save();
         }
 

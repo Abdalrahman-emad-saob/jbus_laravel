@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\InterestPoint;
-use App\Models\Point;
 use App\Models\Route;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class InterestRoutesController extends Controller
 {
@@ -23,7 +20,7 @@ class InterestRoutesController extends Controller
                             },'favoritePoints.point'
         ])->get();
 
-        return $routes;
+        return response()->json(['routes' => $routes]);
     }
 
     public function favoriteRoutes(Request $request)
@@ -34,6 +31,6 @@ class InterestRoutesController extends Controller
             $query->where('passenger_id', $passengerId);
         })->with(['interest_point_starting', 'interest_point_ending', 'favoritePoints'])->get();
 
-        return $routesWithFavoritePoints;
+        return response()->json(['routes-with-favorite-points' => $routesWithFavoritePoints]);
     }
 }

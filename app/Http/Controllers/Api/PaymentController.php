@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Bus;
 use Endroid\QrCode\Builder\Builder;
-use Illuminate\Http\Request;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
 use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
 use Endroid\QrCode\Writer\PngWriter;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
@@ -34,11 +34,11 @@ class PaymentController extends Controller
         $bus = Bus::find($request->bus_id);
         $passengerProfile = Auth::user()->passengerProfile;
 
-        if ($passengerProfile->wallet < 100) {
+        if ($passengerProfile->wallet < $bus->route->fee) {
             return response()->json(['message' => 'Insufficient credits'], 402);
         }
 
-        $passengerProfile->wallet -= 100;
+        $passengerProfile->wallet -= $bus->route->fee;
 
         $passengerProfile->save();
 
@@ -65,6 +65,6 @@ class PaymentController extends Controller
             ->roundBlockSizeMode(new RoundBlockSizeModeMargin())
             ->build();
 
-        return response(content: $result->getString(), headers: ['Content-Type' => $result->getMimeType()]);
+        return response()->json(['qrcode' => $result->getString(), 'mime' => $result->getMimeType()]);
     }
 }

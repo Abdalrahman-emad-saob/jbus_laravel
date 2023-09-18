@@ -5,55 +5,53 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\OTP;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use App\Models\PassengerProfile;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 
 class UpdateController extends Controller
 {
 
     public function updatePFP(Request $request)
-{
-    $validator = Validator::make($request->all(), [
-        'email' => 'required|email|exists:users,email', // Change the validation rule
-        'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|exists:users,email', // Change the validation rule
+            'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-    if ($validator->fails()) {
-        return response()->json(['errors' => $validator->errors()], 400);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        $user = User::where('email', $request->email)->first(); // Find the user by email
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        $profilePicture = $request->file('profile_picture');
+        $imageName = time() . '.' . $profilePicture->getClientOriginalExtension();
+        $imagePath = 'storage/' . $imageName;
+
+        Storage::putFileAs('public', $profilePicture, $imageName);
+
+        $passengerProfile = PassengerProfile::where('passenger_id', $user->id)->first();
+        if ($passengerProfile) {
+            $passengerProfile->picture = $imagePath;
+            $passengerProfile->save();
+        } else {
+            $passengerProfile = new PassengerProfile();
+            $passengerProfile->passenger_id = $user->id;
+            $passengerProfile->picture = $imagePath;
+            $passengerProfile->save();
+        }
+
+        return response()->json(['message' => 'Image updated'], 200);
     }
-
-    $user = User::where('email', $request->email)->first(); // Find the user by email
-
-    if (!$user) {
-        return response()->json(['message' => 'User not found'], 404);
-    }
-
-    $profilePicture = $request->file('profile_picture');
-    $imageName = time() . '.' . $profilePicture->getClientOriginalExtension();
-    $imagePath = 'storage/' . $imageName;
-
-    Storage::putFileAs('public', $profilePicture, $imageName);
-
-    $passengerProfile = PassengerProfile::where('passenger_id', $user->id)->first();
-    if ($passengerProfile) {
-        $passengerProfile->picture = $imagePath;
-        $passengerProfile->save();
-    } else {
-        $passengerProfile = new PassengerProfile();
-        $passengerProfile->passenger_id = $user->id;
-        $passengerProfile->picture = $imagePath;
-        $passengerProfile->save();
-    }
-
-    return response()->json(['message' => 'Image updated'], 200);
-}
-
-
 
 
     public function createOTP(Request $request)
@@ -84,7 +82,6 @@ class UpdateController extends Controller
             'otp' => $otp,
         ], 201);
     }
-
 
 
     public function updateEmail(Request $request)
@@ -135,7 +132,6 @@ class UpdateController extends Controller
         //add response
         return response()->json(['message' => 'Email updated successfully'], 200);
     }
-
 
 
     public function updatePhoneNumber(Request $request)

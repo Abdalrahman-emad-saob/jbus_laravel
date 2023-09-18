@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -195,6 +195,6 @@ return [
         'messagingSenderId' => env('FIREBASE_MESSAGING_SENDER_ID'),
         'appId' => env('FIREBASE_APP_ID'),
         'measurementId' => env('FIREBASE_MEASUREMENT_ID'),
-      ],
+    ],
 
 ];
