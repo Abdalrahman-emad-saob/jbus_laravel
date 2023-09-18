@@ -16,8 +16,6 @@ class DatabaseSeeder extends Seeder
     {
 
 
-        \App\Models\User::factory(10)->create();
-
         \App\Models\User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
@@ -34,6 +32,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\PassengerProfile::factory()->create([
         //     'passenger_id' => 11,
         // ]);
+        \App\Models\User::factory(10)->create();
         \App\Models\OTP::factory(10)->create();
         \App\Models\PassengerProfile::factory(10)->create();
         \App\Models\Point::factory(10)->create();

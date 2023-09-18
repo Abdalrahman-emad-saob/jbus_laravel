@@ -15,12 +15,13 @@ class InterestRoutesController extends Controller
     public function interestRoutes(Request $request)
     {
         $passengerId = $request->user()->id;
-        //     ->limit(5)
 
-        // TODO: REDO
-        $routes = Route::with(['interest_point_starting', 'interest_point_ending', 'favoritePoints' => function ($query) use ($passengerId) {
+        $routes = Route::with(['interest_point_starting',
+                               'interest_point_ending',
+                               'favoritePoints' => function ($query) use ($passengerId) {
             $query->where('passenger_id', $passengerId);
-        }])->get();
+                            },'favoritePoints.point'
+        ])->get();
 
         return $routes;
     }
