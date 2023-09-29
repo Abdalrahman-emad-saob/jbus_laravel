@@ -1,6 +1,7 @@
 <?php
 
-use App\{Http\Controllers\Api\Auth\LoginController,
+use App\{
+    Http\Controllers\Api\Auth\LoginController,
     Http\Controllers\Api\Auth\RegisterController,
     Http\Controllers\Api\Auth\SocialiteController,
     Http\Controllers\Api\ForgotPasswordController,
@@ -8,7 +9,8 @@ use App\{Http\Controllers\Api\Auth\LoginController,
     Http\Controllers\Api\PaymentController,
     Http\Controllers\Api\PointController,
     Http\Controllers\Api\TripController,
-    Http\Controllers\Api\UpdateController};
+    Http\Controllers\Api\UpdateController
+};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Cashier\Http\Controllers\WebhookController;
@@ -80,6 +82,15 @@ Route::prefix('v1')->group(function () {
         Route::get('generate-qr-code', [PaymentController::class, 'generateQRCode'])
             ->middleware(['auth:sanctum', 'checkIfDriver'])
             ->name('payment.generate-qr-code');
+
+
+        Route::get('request-transfer', [PaymentController::class, 'requestTransfer'])
+            ->middleware('auth:sanctum')
+            ->name('payment.request-transfer');
+
+        Route::get('transfer', [PaymentController::class, 'transfer'])
+            ->middleware('auth:sanctum')
+            ->name('payment.transfer');
     });
 
     Route::put('rate-trip', [TripController::class, 'rateTrip'])->middleware('auth:sanctum');
