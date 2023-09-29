@@ -65,6 +65,6 @@ class PaymentController extends Controller
             ->roundBlockSizeMode(new RoundBlockSizeModeMargin())
             ->build();
 
-        return response()->json(['qrcode' => $result->getString(), 'mime' => $result->getMimeType()]);
+        return response()->json(['qrcode' => base64_encode($result->getString()), 'mime' => $result->getMimeType()]);
     }
 }
